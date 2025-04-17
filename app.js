@@ -2,6 +2,7 @@ const express = require("express");
 require("dotenv").config();
 const cors = require("cors");
 const app = express();
+const levelsRouter = require("./routes/levelsRouter");
 
 const corsOptions = {
   origin: process.env.CLIENT,
@@ -12,9 +13,7 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use("/", (req, res) => {
-  res.send("<h1>Hello World</h1");
-});
+app.use("/levels", levelsRouter);
 
 app.use((error, req, res, next) => {
   console.error(error);
