@@ -1,16 +1,16 @@
 const asyncHandler = require("express-async-handler");
-const session = require("../middlewares/expressSession");
 const { executeWithPrisma } = require("../utils/executeWithPrisma");
 
 const setCookie = asyncHandler(async (req, res) => {
   try {
-    console.log("Setting cookie!");
+    console.log("Setting cookie");
     console.log(req.session);
-    res.json({ status: "success" });
+    res.status(200).json({ status: "success" });
   } catch (error) {
     throw new Error(error);
   }
 });
+
 const checkItemLocation = asyncHandler(async (req, res) => {
   try {
     console.log(req.body);
