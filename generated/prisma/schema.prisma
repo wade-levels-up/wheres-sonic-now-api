@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
   output   = "../generated/prisma"
@@ -25,14 +19,23 @@ model Item {
   name      String
   locationX Int
   locationY Int
-  Level     Level?  @relation(fields: [levelId], references: [id])
   levelId   String?
+  Level     Level?  @relation(fields: [levelId], references: [id])
 }
 
 model Score {
   id      String  @unique
   name    String?
   time    Int
-  Level   Level?  @relation(fields: [levelId], references: [id])
   levelId String?
+  Level   Level?  @relation(fields: [levelId], references: [id])
+}
+
+model session {
+  sid        String    @id @db.VarChar
+  sess       Json      @db.Json
+  expire     DateTime  @db.Timestamp(6)
+  created_at DateTime? @default(now()) @db.Timestamp(6)
+
+  @@index([expire], map: "IDX_session_expire")
 }

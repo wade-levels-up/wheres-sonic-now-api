@@ -1,8 +1,19 @@
 const asyncHandler = require("express-async-handler");
+const session = require("../middlewares/expressSession");
 const { executeWithPrisma } = require("../utils/executeWithPrisma");
 
+const setCookie = asyncHandler(async (req, res) => {
+  try {
+    console.log("Setting cookie!");
+    console.log(req.session);
+    res.json({ status: "success" });
+  } catch (error) {
+    throw new Error(error);
+  }
+});
 const checkItemLocation = asyncHandler(async (req, res) => {
   try {
+    console.log(req.body);
     return await executeWithPrisma(async (prisma) => {
       const item = await prisma.item.findMany({
         where: {
@@ -24,7 +35,7 @@ const checkItemLocation = asyncHandler(async (req, res) => {
       ) {
         isFound = true;
       }
-
+      console.log(isFound);
       res.json({ isFound });
     });
   } catch (error) {
@@ -32,4 +43,4 @@ const checkItemLocation = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = { checkItemLocation };
+module.exports = { checkItemLocation, setCookie };

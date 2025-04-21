@@ -4,12 +4,13 @@ const cors = require("cors");
 const app = express();
 const levelsRouter = require("./routes/levelsRouter");
 
-const corsOptions = {
-  origin: process.env.CLIENT,
-  optionsSuccessStatus: 200,
-};
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
 
-app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
