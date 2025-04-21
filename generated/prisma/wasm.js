@@ -130,10 +130,10 @@ exports.Prisma.ItemScalarFieldEnum = {
 };
 
 exports.Prisma.ScoreScalarFieldEnum = {
-  id: 'id',
   name: 'name',
   time: 'time',
-  levelId: 'levelId'
+  levelId: 'levelId',
+  id: 'id'
 };
 
 exports.Prisma.SessionScalarFieldEnum = {
@@ -141,6 +141,15 @@ exports.Prisma.SessionScalarFieldEnum = {
   sess: 'sess',
   expire: 'expire',
   created_at: 'created_at'
+};
+
+exports.Prisma.LevelstateScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  sessionId: 'sessionId',
+  sonicFound: 'sonicFound',
+  tailsFound: 'tailsFound',
+  knucklesFound: 'knucklesFound'
 };
 
 exports.Prisma.SortOrder = {
@@ -173,7 +182,8 @@ exports.Prisma.ModelName = {
   Level: 'Level',
   Item: 'Item',
   Score: 'Score',
-  session: 'session'
+  Session: 'Session',
+  Levelstate: 'Levelstate'
 };
 
 /**

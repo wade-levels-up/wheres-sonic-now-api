@@ -29,10 +29,15 @@ export type Item = $Result.DefaultSelection<Prisma.$ItemPayload>
  */
 export type Score = $Result.DefaultSelection<Prisma.$ScorePayload>
 /**
- * Model session
+ * Model Session
  * 
  */
-export type session = $Result.DefaultSelection<Prisma.$sessionPayload>
+export type Session = $Result.DefaultSelection<Prisma.$SessionPayload>
+/**
+ * Model Levelstate
+ * 
+ */
+export type Levelstate = $Result.DefaultSelection<Prisma.$LevelstatePayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -190,14 +195,24 @@ export class PrismaClient<
   get score(): Prisma.ScoreDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.session`: Exposes CRUD operations for the **session** model.
+   * `prisma.session`: Exposes CRUD operations for the **Session** model.
     * Example usage:
     * ```ts
     * // Fetch zero or more Sessions
     * const sessions = await prisma.session.findMany()
     * ```
     */
-  get session(): Prisma.sessionDelegate<ExtArgs, ClientOptions>;
+  get session(): Prisma.SessionDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.levelstate`: Exposes CRUD operations for the **Levelstate** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Levelstates
+    * const levelstates = await prisma.levelstate.findMany()
+    * ```
+    */
+  get levelstate(): Prisma.LevelstateDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -641,7 +656,8 @@ export namespace Prisma {
     Level: 'Level',
     Item: 'Item',
     Score: 'Score',
-    session: 'session'
+    Session: 'Session',
+    Levelstate: 'Levelstate'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -660,7 +676,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "level" | "item" | "score" | "session"
+      modelProps: "level" | "item" | "score" | "session" | "levelstate"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -886,77 +902,151 @@ export namespace Prisma {
           }
         }
       }
-      session: {
-        payload: Prisma.$sessionPayload<ExtArgs>
-        fields: Prisma.sessionFieldRefs
+      Session: {
+        payload: Prisma.$SessionPayload<ExtArgs>
+        fields: Prisma.SessionFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.sessionFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$sessionPayload> | null
+            args: Prisma.SessionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SessionPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.sessionFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$sessionPayload>
+            args: Prisma.SessionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SessionPayload>
           }
           findFirst: {
-            args: Prisma.sessionFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$sessionPayload> | null
+            args: Prisma.SessionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SessionPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.sessionFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$sessionPayload>
+            args: Prisma.SessionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SessionPayload>
           }
           findMany: {
-            args: Prisma.sessionFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$sessionPayload>[]
+            args: Prisma.SessionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SessionPayload>[]
           }
           create: {
-            args: Prisma.sessionCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$sessionPayload>
+            args: Prisma.SessionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SessionPayload>
           }
           createMany: {
-            args: Prisma.sessionCreateManyArgs<ExtArgs>
+            args: Prisma.SessionCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.sessionCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$sessionPayload>[]
+            args: Prisma.SessionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SessionPayload>[]
           }
           delete: {
-            args: Prisma.sessionDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$sessionPayload>
+            args: Prisma.SessionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SessionPayload>
           }
           update: {
-            args: Prisma.sessionUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$sessionPayload>
+            args: Prisma.SessionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SessionPayload>
           }
           deleteMany: {
-            args: Prisma.sessionDeleteManyArgs<ExtArgs>
+            args: Prisma.SessionDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.sessionUpdateManyArgs<ExtArgs>
+            args: Prisma.SessionUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateManyAndReturn: {
-            args: Prisma.sessionUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$sessionPayload>[]
+            args: Prisma.SessionUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SessionPayload>[]
           }
           upsert: {
-            args: Prisma.sessionUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$sessionPayload>
+            args: Prisma.SessionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SessionPayload>
           }
           aggregate: {
             args: Prisma.SessionAggregateArgs<ExtArgs>
             result: $Utils.Optional<AggregateSession>
           }
           groupBy: {
-            args: Prisma.sessionGroupByArgs<ExtArgs>
+            args: Prisma.SessionGroupByArgs<ExtArgs>
             result: $Utils.Optional<SessionGroupByOutputType>[]
           }
           count: {
-            args: Prisma.sessionCountArgs<ExtArgs>
+            args: Prisma.SessionCountArgs<ExtArgs>
             result: $Utils.Optional<SessionCountAggregateOutputType> | number
+          }
+        }
+      }
+      Levelstate: {
+        payload: Prisma.$LevelstatePayload<ExtArgs>
+        fields: Prisma.LevelstateFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.LevelstateFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LevelstatePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.LevelstateFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LevelstatePayload>
+          }
+          findFirst: {
+            args: Prisma.LevelstateFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LevelstatePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.LevelstateFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LevelstatePayload>
+          }
+          findMany: {
+            args: Prisma.LevelstateFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LevelstatePayload>[]
+          }
+          create: {
+            args: Prisma.LevelstateCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LevelstatePayload>
+          }
+          createMany: {
+            args: Prisma.LevelstateCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.LevelstateCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LevelstatePayload>[]
+          }
+          delete: {
+            args: Prisma.LevelstateDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LevelstatePayload>
+          }
+          update: {
+            args: Prisma.LevelstateUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LevelstatePayload>
+          }
+          deleteMany: {
+            args: Prisma.LevelstateDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.LevelstateUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.LevelstateUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LevelstatePayload>[]
+          }
+          upsert: {
+            args: Prisma.LevelstateUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LevelstatePayload>
+          }
+          aggregate: {
+            args: Prisma.LevelstateAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateLevelstate>
+          }
+          groupBy: {
+            args: Prisma.LevelstateGroupByArgs<ExtArgs>
+            result: $Utils.Optional<LevelstateGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.LevelstateCountArgs<ExtArgs>
+            result: $Utils.Optional<LevelstateCountAggregateOutputType> | number
           }
         }
       }
@@ -1047,7 +1137,8 @@ export namespace Prisma {
     level?: LevelOmit
     item?: ItemOmit
     score?: ScoreOmit
-    session?: sessionOmit
+    session?: SessionOmit
+    levelstate?: LevelstateOmit
   }
 
   /* Types for Logging */
@@ -1174,6 +1265,37 @@ export namespace Prisma {
    */
   export type LevelCountOutputTypeCountScoresArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ScoreWhereInput
+  }
+
+
+  /**
+   * Count Type SessionCountOutputType
+   */
+
+  export type SessionCountOutputType = {
+    levelStates: number
+  }
+
+  export type SessionCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    levelStates?: boolean | SessionCountOutputTypeCountLevelStatesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * SessionCountOutputType without action
+   */
+  export type SessionCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SessionCountOutputType
+     */
+    select?: SessionCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * SessionCountOutputType without action
+   */
+  export type SessionCountOutputTypeCountLevelStatesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LevelstateWhereInput
   }
 
 
@@ -3360,62 +3482,66 @@ export namespace Prisma {
 
   export type ScoreAvgAggregateOutputType = {
     time: number | null
+    id: number | null
   }
 
   export type ScoreSumAggregateOutputType = {
     time: number | null
+    id: number | null
   }
 
   export type ScoreMinAggregateOutputType = {
-    id: string | null
     name: string | null
     time: number | null
     levelId: string | null
+    id: number | null
   }
 
   export type ScoreMaxAggregateOutputType = {
-    id: string | null
     name: string | null
     time: number | null
     levelId: string | null
+    id: number | null
   }
 
   export type ScoreCountAggregateOutputType = {
-    id: number
     name: number
     time: number
     levelId: number
+    id: number
     _all: number
   }
 
 
   export type ScoreAvgAggregateInputType = {
     time?: true
+    id?: true
   }
 
   export type ScoreSumAggregateInputType = {
     time?: true
+    id?: true
   }
 
   export type ScoreMinAggregateInputType = {
-    id?: true
     name?: true
     time?: true
     levelId?: true
+    id?: true
   }
 
   export type ScoreMaxAggregateInputType = {
-    id?: true
     name?: true
     time?: true
     levelId?: true
+    id?: true
   }
 
   export type ScoreCountAggregateInputType = {
-    id?: true
     name?: true
     time?: true
     levelId?: true
+    id?: true
     _all?: true
   }
 
@@ -3506,10 +3632,10 @@ export namespace Prisma {
   }
 
   export type ScoreGroupByOutputType = {
-    id: string
     name: string | null
     time: number
     levelId: string | null
+    id: number
     _count: ScoreCountAggregateOutputType | null
     _avg: ScoreAvgAggregateOutputType | null
     _sum: ScoreSumAggregateOutputType | null
@@ -3532,37 +3658,37 @@ export namespace Prisma {
 
 
   export type ScoreSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
     name?: boolean
     time?: boolean
     levelId?: boolean
+    id?: boolean
     Level?: boolean | Score$LevelArgs<ExtArgs>
   }, ExtArgs["result"]["score"]>
 
   export type ScoreSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
     name?: boolean
     time?: boolean
     levelId?: boolean
+    id?: boolean
     Level?: boolean | Score$LevelArgs<ExtArgs>
   }, ExtArgs["result"]["score"]>
 
   export type ScoreSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
     name?: boolean
     time?: boolean
     levelId?: boolean
+    id?: boolean
     Level?: boolean | Score$LevelArgs<ExtArgs>
   }, ExtArgs["result"]["score"]>
 
   export type ScoreSelectScalar = {
-    id?: boolean
     name?: boolean
     time?: boolean
     levelId?: boolean
+    id?: boolean
   }
 
-  export type ScoreOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "time" | "levelId", ExtArgs["result"]["score"]>
+  export type ScoreOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"name" | "time" | "levelId" | "id", ExtArgs["result"]["score"]>
   export type ScoreInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Level?: boolean | Score$LevelArgs<ExtArgs>
   }
@@ -3579,10 +3705,10 @@ export namespace Prisma {
       Level: Prisma.$LevelPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
-      id: string
       name: string | null
       time: number
       levelId: string | null
+      id: number
     }, ExtArgs["result"]["score"]>
     composites: {}
   }
@@ -3666,8 +3792,8 @@ export namespace Prisma {
      * // Get first 10 Scores
      * const scores = await prisma.score.findMany({ take: 10 })
      * 
-     * // Only select the `id`
-     * const scoreWithIdOnly = await prisma.score.findMany({ select: { id: true } })
+     * // Only select the `name`
+     * const scoreWithNameOnly = await prisma.score.findMany({ select: { name: true } })
      * 
      */
     findMany<T extends ScoreFindManyArgs>(args?: SelectSubset<T, ScoreFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ScorePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -3711,9 +3837,9 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Create many Scores and only return the `id`
-     * const scoreWithIdOnly = await prisma.score.createManyAndReturn({
-     *   select: { id: true },
+     * // Create many Scores and only return the `name`
+     * const scoreWithNameOnly = await prisma.score.createManyAndReturn({
+     *   select: { name: true },
      *   data: [
      *     // ... provide data here
      *   ]
@@ -3802,9 +3928,9 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more Scores and only return the `id`
-     * const scoreWithIdOnly = await prisma.score.updateManyAndReturn({
-     *   select: { id: true },
+     * // Update zero or more Scores and only return the `name`
+     * const scoreWithNameOnly = await prisma.score.updateManyAndReturn({
+     *   select: { name: true },
      *   where: {
      *     // ... provide filter here
      *   },
@@ -4007,10 +4133,10 @@ export namespace Prisma {
    * Fields of the Score model
    */
   interface ScoreFieldRefs {
-    readonly id: FieldRef<"Score", 'String'>
     readonly name: FieldRef<"Score", 'String'>
     readonly time: FieldRef<"Score", 'Int'>
     readonly levelId: FieldRef<"Score", 'String'>
+    readonly id: FieldRef<"Score", 'Int'>
   }
     
 
@@ -4445,7 +4571,7 @@ export namespace Prisma {
 
 
   /**
-   * Model session
+   * Model Session
    */
 
   export type AggregateSession = {
@@ -4497,37 +4623,37 @@ export namespace Prisma {
 
   export type SessionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which session to aggregate.
+     * Filter which Session to aggregate.
      */
-    where?: sessionWhereInput
+    where?: SessionWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of sessions to fetch.
+     * Determine the order of Sessions to fetch.
      */
-    orderBy?: sessionOrderByWithRelationInput | sessionOrderByWithRelationInput[]
+    orderBy?: SessionOrderByWithRelationInput | SessionOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: sessionWhereUniqueInput
+    cursor?: SessionWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` sessions from the position of the cursor.
+     * Take `±n` Sessions from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` sessions.
+     * Skip the first `n` Sessions.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned sessions
+     * Count returned Sessions
     **/
     _count?: true | SessionCountAggregateInputType
     /**
@@ -4555,11 +4681,11 @@ export namespace Prisma {
 
 
 
-  export type sessionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: sessionWhereInput
-    orderBy?: sessionOrderByWithAggregationInput | sessionOrderByWithAggregationInput[]
+  export type SessionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SessionWhereInput
+    orderBy?: SessionOrderByWithAggregationInput | SessionOrderByWithAggregationInput[]
     by: SessionScalarFieldEnum[] | SessionScalarFieldEnum
-    having?: sessionScalarWhereWithAggregatesInput
+    having?: SessionScalarWhereWithAggregatesInput
     take?: number
     skip?: number
     _count?: SessionCountAggregateInputType | true
@@ -4577,7 +4703,7 @@ export namespace Prisma {
     _max: SessionMaxAggregateOutputType | null
   }
 
-  type GetSessionGroupByPayload<T extends sessionGroupByArgs> = Prisma.PrismaPromise<
+  type GetSessionGroupByPayload<T extends SessionGroupByArgs> = Prisma.PrismaPromise<
     Array<
       PickEnumerable<SessionGroupByOutputType, T['by']> &
         {
@@ -4591,39 +4717,49 @@ export namespace Prisma {
     >
 
 
-  export type sessionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type SessionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    sid?: boolean
+    sess?: boolean
+    expire?: boolean
+    created_at?: boolean
+    levelStates?: boolean | Session$levelStatesArgs<ExtArgs>
+    _count?: boolean | SessionCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["session"]>
+
+  export type SessionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     sid?: boolean
     sess?: boolean
     expire?: boolean
     created_at?: boolean
   }, ExtArgs["result"]["session"]>
 
-  export type sessionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type SessionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     sid?: boolean
     sess?: boolean
     expire?: boolean
     created_at?: boolean
   }, ExtArgs["result"]["session"]>
 
-  export type sessionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    sid?: boolean
-    sess?: boolean
-    expire?: boolean
-    created_at?: boolean
-  }, ExtArgs["result"]["session"]>
-
-  export type sessionSelectScalar = {
+  export type SessionSelectScalar = {
     sid?: boolean
     sess?: boolean
     expire?: boolean
     created_at?: boolean
   }
 
-  export type sessionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"sid" | "sess" | "expire" | "created_at", ExtArgs["result"]["session"]>
+  export type SessionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"sid" | "sess" | "expire" | "created_at", ExtArgs["result"]["session"]>
+  export type SessionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    levelStates?: boolean | Session$levelStatesArgs<ExtArgs>
+    _count?: boolean | SessionCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type SessionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type SessionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
-  export type $sessionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "session"
-    objects: {}
+  export type $SessionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Session"
+    objects: {
+      levelStates: Prisma.$LevelstatePayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       sid: string
       sess: Prisma.JsonValue
@@ -4633,18 +4769,18 @@ export namespace Prisma {
     composites: {}
   }
 
-  type sessionGetPayload<S extends boolean | null | undefined | sessionDefaultArgs> = $Result.GetResult<Prisma.$sessionPayload, S>
+  type SessionGetPayload<S extends boolean | null | undefined | SessionDefaultArgs> = $Result.GetResult<Prisma.$SessionPayload, S>
 
-  type sessionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<sessionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+  type SessionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<SessionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
       select?: SessionCountAggregateInputType | true
     }
 
-  export interface sessionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['session'], meta: { name: 'session' } }
+  export interface SessionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Session'], meta: { name: 'Session' } }
     /**
      * Find zero or one Session that matches the filter.
-     * @param {sessionFindUniqueArgs} args - Arguments to find a Session
+     * @param {SessionFindUniqueArgs} args - Arguments to find a Session
      * @example
      * // Get one Session
      * const session = await prisma.session.findUnique({
@@ -4653,12 +4789,12 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends sessionFindUniqueArgs>(args: SelectSubset<T, sessionFindUniqueArgs<ExtArgs>>): Prisma__sessionClient<$Result.GetResult<Prisma.$sessionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends SessionFindUniqueArgs>(args: SelectSubset<T, SessionFindUniqueArgs<ExtArgs>>): Prisma__SessionClient<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find one Session that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {sessionFindUniqueOrThrowArgs} args - Arguments to find a Session
+     * @param {SessionFindUniqueOrThrowArgs} args - Arguments to find a Session
      * @example
      * // Get one Session
      * const session = await prisma.session.findUniqueOrThrow({
@@ -4667,13 +4803,13 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends sessionFindUniqueOrThrowArgs>(args: SelectSubset<T, sessionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__sessionClient<$Result.GetResult<Prisma.$sessionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends SessionFindUniqueOrThrowArgs>(args: SelectSubset<T, SessionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SessionClient<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Session that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {sessionFindFirstArgs} args - Arguments to find a Session
+     * @param {SessionFindFirstArgs} args - Arguments to find a Session
      * @example
      * // Get one Session
      * const session = await prisma.session.findFirst({
@@ -4682,14 +4818,14 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends sessionFindFirstArgs>(args?: SelectSubset<T, sessionFindFirstArgs<ExtArgs>>): Prisma__sessionClient<$Result.GetResult<Prisma.$sessionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends SessionFindFirstArgs>(args?: SelectSubset<T, SessionFindFirstArgs<ExtArgs>>): Prisma__SessionClient<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Session that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {sessionFindFirstOrThrowArgs} args - Arguments to find a Session
+     * @param {SessionFindFirstOrThrowArgs} args - Arguments to find a Session
      * @example
      * // Get one Session
      * const session = await prisma.session.findFirstOrThrow({
@@ -4698,13 +4834,13 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends sessionFindFirstOrThrowArgs>(args?: SelectSubset<T, sessionFindFirstOrThrowArgs<ExtArgs>>): Prisma__sessionClient<$Result.GetResult<Prisma.$sessionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends SessionFindFirstOrThrowArgs>(args?: SelectSubset<T, SessionFindFirstOrThrowArgs<ExtArgs>>): Prisma__SessionClient<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find zero or more Sessions that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {sessionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {SessionFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
      * // Get all Sessions
      * const sessions = await prisma.session.findMany()
@@ -4716,11 +4852,11 @@ export namespace Prisma {
      * const sessionWithSidOnly = await prisma.session.findMany({ select: { sid: true } })
      * 
      */
-    findMany<T extends sessionFindManyArgs>(args?: SelectSubset<T, sessionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$sessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends SessionFindManyArgs>(args?: SelectSubset<T, SessionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
      * Create a Session.
-     * @param {sessionCreateArgs} args - Arguments to create a Session.
+     * @param {SessionCreateArgs} args - Arguments to create a Session.
      * @example
      * // Create one Session
      * const Session = await prisma.session.create({
@@ -4730,11 +4866,11 @@ export namespace Prisma {
      * })
      * 
      */
-    create<T extends sessionCreateArgs>(args: SelectSubset<T, sessionCreateArgs<ExtArgs>>): Prisma__sessionClient<$Result.GetResult<Prisma.$sessionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends SessionCreateArgs>(args: SelectSubset<T, SessionCreateArgs<ExtArgs>>): Prisma__SessionClient<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Create many Sessions.
-     * @param {sessionCreateManyArgs} args - Arguments to create many Sessions.
+     * @param {SessionCreateManyArgs} args - Arguments to create many Sessions.
      * @example
      * // Create many Sessions
      * const session = await prisma.session.createMany({
@@ -4744,11 +4880,11 @@ export namespace Prisma {
      * })
      *     
      */
-    createMany<T extends sessionCreateManyArgs>(args?: SelectSubset<T, sessionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends SessionCreateManyArgs>(args?: SelectSubset<T, SessionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Create many Sessions and returns the data saved in the database.
-     * @param {sessionCreateManyAndReturnArgs} args - Arguments to create many Sessions.
+     * @param {SessionCreateManyAndReturnArgs} args - Arguments to create many Sessions.
      * @example
      * // Create many Sessions
      * const session = await prisma.session.createManyAndReturn({
@@ -4768,11 +4904,11 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends sessionCreateManyAndReturnArgs>(args?: SelectSubset<T, sessionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$sessionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends SessionCreateManyAndReturnArgs>(args?: SelectSubset<T, SessionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
     /**
      * Delete a Session.
-     * @param {sessionDeleteArgs} args - Arguments to delete one Session.
+     * @param {SessionDeleteArgs} args - Arguments to delete one Session.
      * @example
      * // Delete one Session
      * const Session = await prisma.session.delete({
@@ -4782,11 +4918,11 @@ export namespace Prisma {
      * })
      * 
      */
-    delete<T extends sessionDeleteArgs>(args: SelectSubset<T, sessionDeleteArgs<ExtArgs>>): Prisma__sessionClient<$Result.GetResult<Prisma.$sessionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends SessionDeleteArgs>(args: SelectSubset<T, SessionDeleteArgs<ExtArgs>>): Prisma__SessionClient<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Update one Session.
-     * @param {sessionUpdateArgs} args - Arguments to update one Session.
+     * @param {SessionUpdateArgs} args - Arguments to update one Session.
      * @example
      * // Update one Session
      * const session = await prisma.session.update({
@@ -4799,11 +4935,11 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends sessionUpdateArgs>(args: SelectSubset<T, sessionUpdateArgs<ExtArgs>>): Prisma__sessionClient<$Result.GetResult<Prisma.$sessionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends SessionUpdateArgs>(args: SelectSubset<T, SessionUpdateArgs<ExtArgs>>): Prisma__SessionClient<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Delete zero or more Sessions.
-     * @param {sessionDeleteManyArgs} args - Arguments to filter Sessions to delete.
+     * @param {SessionDeleteManyArgs} args - Arguments to filter Sessions to delete.
      * @example
      * // Delete a few Sessions
      * const { count } = await prisma.session.deleteMany({
@@ -4813,13 +4949,13 @@ export namespace Prisma {
      * })
      * 
      */
-    deleteMany<T extends sessionDeleteManyArgs>(args?: SelectSubset<T, sessionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends SessionDeleteManyArgs>(args?: SelectSubset<T, SessionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Update zero or more Sessions.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {sessionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {SessionUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
      * // Update many Sessions
      * const session = await prisma.session.updateMany({
@@ -4832,11 +4968,11 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends sessionUpdateManyArgs>(args: SelectSubset<T, sessionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends SessionUpdateManyArgs>(args: SelectSubset<T, SessionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Update zero or more Sessions and returns the data updated in the database.
-     * @param {sessionUpdateManyAndReturnArgs} args - Arguments to update many Sessions.
+     * @param {SessionUpdateManyAndReturnArgs} args - Arguments to update many Sessions.
      * @example
      * // Update many Sessions
      * const session = await prisma.session.updateManyAndReturn({
@@ -4862,11 +4998,11 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    updateManyAndReturn<T extends sessionUpdateManyAndReturnArgs>(args: SelectSubset<T, sessionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$sessionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends SessionUpdateManyAndReturnArgs>(args: SelectSubset<T, SessionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
      * Create or update one Session.
-     * @param {sessionUpsertArgs} args - Arguments to update or create a Session.
+     * @param {SessionUpsertArgs} args - Arguments to update or create a Session.
      * @example
      * // Update or create a Session
      * const session = await prisma.session.upsert({
@@ -4881,14 +5017,14 @@ export namespace Prisma {
      *   }
      * })
      */
-    upsert<T extends sessionUpsertArgs>(args: SelectSubset<T, sessionUpsertArgs<ExtArgs>>): Prisma__sessionClient<$Result.GetResult<Prisma.$sessionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends SessionUpsertArgs>(args: SelectSubset<T, SessionUpsertArgs<ExtArgs>>): Prisma__SessionClient<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
      * Count the number of Sessions.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {sessionCountArgs} args - Arguments to filter Sessions to count.
+     * @param {SessionCountArgs} args - Arguments to filter Sessions to count.
      * @example
      * // Count the number of Sessions
      * const count = await prisma.session.count({
@@ -4897,8 +5033,8 @@ export namespace Prisma {
      *   }
      * })
     **/
-    count<T extends sessionCountArgs>(
-      args?: Subset<T, sessionCountArgs>,
+    count<T extends SessionCountArgs>(
+      args?: Subset<T, SessionCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
@@ -4937,7 +5073,7 @@ export namespace Prisma {
      * Group by Session.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {sessionGroupByArgs} args - Group by arguments.
+     * @param {SessionGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -4952,14 +5088,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends sessionGroupByArgs,
+      T extends SessionGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: sessionGroupByArgs['orderBy'] }
-        : { orderBy?: sessionGroupByArgs['orderBy'] },
+        ? { orderBy: SessionGroupByArgs['orderBy'] }
+        : { orderBy?: SessionGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -5008,21 +5144,22 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, sessionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSessionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, SessionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSessionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the session model
+   * Fields of the Session model
    */
-  readonly fields: sessionFieldRefs;
+  readonly fields: SessionFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for session.
+   * The delegate class that acts as a "Promise-like" for Session.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__sessionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__SessionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    levelStates<T extends Session$levelStatesArgs<ExtArgs> = {}>(args?: Subset<T, Session$levelStatesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LevelstatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5049,376 +5186,1564 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the session model
+   * Fields of the Session model
    */
-  interface sessionFieldRefs {
-    readonly sid: FieldRef<"session", 'String'>
-    readonly sess: FieldRef<"session", 'Json'>
-    readonly expire: FieldRef<"session", 'DateTime'>
-    readonly created_at: FieldRef<"session", 'DateTime'>
+  interface SessionFieldRefs {
+    readonly sid: FieldRef<"Session", 'String'>
+    readonly sess: FieldRef<"Session", 'Json'>
+    readonly expire: FieldRef<"Session", 'DateTime'>
+    readonly created_at: FieldRef<"Session", 'DateTime'>
   }
     
 
   // Custom InputTypes
   /**
-   * session findUnique
+   * Session findUnique
    */
-  export type sessionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SessionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the session
+     * Select specific fields to fetch from the Session
      */
-    select?: sessionSelect<ExtArgs> | null
+    select?: SessionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the session
+     * Omit specific fields from the Session
      */
-    omit?: sessionOmit<ExtArgs> | null
+    omit?: SessionOmit<ExtArgs> | null
     /**
-     * Filter, which session to fetch.
+     * Choose, which related nodes to fetch as well
      */
-    where: sessionWhereUniqueInput
+    include?: SessionInclude<ExtArgs> | null
+    /**
+     * Filter, which Session to fetch.
+     */
+    where: SessionWhereUniqueInput
   }
 
   /**
-   * session findUniqueOrThrow
+   * Session findUniqueOrThrow
    */
-  export type sessionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SessionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the session
+     * Select specific fields to fetch from the Session
      */
-    select?: sessionSelect<ExtArgs> | null
+    select?: SessionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the session
+     * Omit specific fields from the Session
      */
-    omit?: sessionOmit<ExtArgs> | null
+    omit?: SessionOmit<ExtArgs> | null
     /**
-     * Filter, which session to fetch.
+     * Choose, which related nodes to fetch as well
      */
-    where: sessionWhereUniqueInput
+    include?: SessionInclude<ExtArgs> | null
+    /**
+     * Filter, which Session to fetch.
+     */
+    where: SessionWhereUniqueInput
   }
 
   /**
-   * session findFirst
+   * Session findFirst
    */
-  export type sessionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SessionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the session
+     * Select specific fields to fetch from the Session
      */
-    select?: sessionSelect<ExtArgs> | null
+    select?: SessionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the session
+     * Omit specific fields from the Session
      */
-    omit?: sessionOmit<ExtArgs> | null
+    omit?: SessionOmit<ExtArgs> | null
     /**
-     * Filter, which session to fetch.
+     * Choose, which related nodes to fetch as well
      */
-    where?: sessionWhereInput
+    include?: SessionInclude<ExtArgs> | null
+    /**
+     * Filter, which Session to fetch.
+     */
+    where?: SessionWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of sessions to fetch.
+     * Determine the order of Sessions to fetch.
      */
-    orderBy?: sessionOrderByWithRelationInput | sessionOrderByWithRelationInput[]
+    orderBy?: SessionOrderByWithRelationInput | SessionOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for sessions.
+     * Sets the position for searching for Sessions.
      */
-    cursor?: sessionWhereUniqueInput
+    cursor?: SessionWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` sessions from the position of the cursor.
+     * Take `±n` Sessions from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` sessions.
+     * Skip the first `n` Sessions.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of sessions.
+     * Filter by unique combinations of Sessions.
      */
     distinct?: SessionScalarFieldEnum | SessionScalarFieldEnum[]
   }
 
   /**
-   * session findFirstOrThrow
+   * Session findFirstOrThrow
    */
-  export type sessionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SessionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the session
+     * Select specific fields to fetch from the Session
      */
-    select?: sessionSelect<ExtArgs> | null
+    select?: SessionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the session
+     * Omit specific fields from the Session
      */
-    omit?: sessionOmit<ExtArgs> | null
+    omit?: SessionOmit<ExtArgs> | null
     /**
-     * Filter, which session to fetch.
+     * Choose, which related nodes to fetch as well
      */
-    where?: sessionWhereInput
+    include?: SessionInclude<ExtArgs> | null
+    /**
+     * Filter, which Session to fetch.
+     */
+    where?: SessionWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of sessions to fetch.
+     * Determine the order of Sessions to fetch.
      */
-    orderBy?: sessionOrderByWithRelationInput | sessionOrderByWithRelationInput[]
+    orderBy?: SessionOrderByWithRelationInput | SessionOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for sessions.
+     * Sets the position for searching for Sessions.
      */
-    cursor?: sessionWhereUniqueInput
+    cursor?: SessionWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` sessions from the position of the cursor.
+     * Take `±n` Sessions from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` sessions.
+     * Skip the first `n` Sessions.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of sessions.
+     * Filter by unique combinations of Sessions.
      */
     distinct?: SessionScalarFieldEnum | SessionScalarFieldEnum[]
   }
 
   /**
-   * session findMany
+   * Session findMany
    */
-  export type sessionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SessionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the session
+     * Select specific fields to fetch from the Session
      */
-    select?: sessionSelect<ExtArgs> | null
+    select?: SessionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the session
+     * Omit specific fields from the Session
      */
-    omit?: sessionOmit<ExtArgs> | null
+    omit?: SessionOmit<ExtArgs> | null
     /**
-     * Filter, which sessions to fetch.
+     * Choose, which related nodes to fetch as well
      */
-    where?: sessionWhereInput
+    include?: SessionInclude<ExtArgs> | null
+    /**
+     * Filter, which Sessions to fetch.
+     */
+    where?: SessionWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of sessions to fetch.
+     * Determine the order of Sessions to fetch.
      */
-    orderBy?: sessionOrderByWithRelationInput | sessionOrderByWithRelationInput[]
+    orderBy?: SessionOrderByWithRelationInput | SessionOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing sessions.
+     * Sets the position for listing Sessions.
      */
-    cursor?: sessionWhereUniqueInput
+    cursor?: SessionWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` sessions from the position of the cursor.
+     * Take `±n` Sessions from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` sessions.
+     * Skip the first `n` Sessions.
      */
     skip?: number
     distinct?: SessionScalarFieldEnum | SessionScalarFieldEnum[]
   }
 
   /**
-   * session create
+   * Session create
    */
-  export type sessionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SessionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the session
+     * Select specific fields to fetch from the Session
      */
-    select?: sessionSelect<ExtArgs> | null
+    select?: SessionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the session
+     * Omit specific fields from the Session
      */
-    omit?: sessionOmit<ExtArgs> | null
+    omit?: SessionOmit<ExtArgs> | null
     /**
-     * The data needed to create a session.
+     * Choose, which related nodes to fetch as well
      */
-    data: XOR<sessionCreateInput, sessionUncheckedCreateInput>
+    include?: SessionInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Session.
+     */
+    data: XOR<SessionCreateInput, SessionUncheckedCreateInput>
   }
 
   /**
-   * session createMany
+   * Session createMany
    */
-  export type sessionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SessionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many sessions.
+     * The data used to create many Sessions.
      */
-    data: sessionCreateManyInput | sessionCreateManyInput[]
+    data: SessionCreateManyInput | SessionCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * session createManyAndReturn
+   * Session createManyAndReturn
    */
-  export type sessionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SessionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the session
+     * Select specific fields to fetch from the Session
      */
-    select?: sessionSelectCreateManyAndReturn<ExtArgs> | null
+    select?: SessionSelectCreateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the session
+     * Omit specific fields from the Session
      */
-    omit?: sessionOmit<ExtArgs> | null
+    omit?: SessionOmit<ExtArgs> | null
     /**
-     * The data used to create many sessions.
+     * The data used to create many Sessions.
      */
-    data: sessionCreateManyInput | sessionCreateManyInput[]
+    data: SessionCreateManyInput | SessionCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * session update
+   * Session update
    */
-  export type sessionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SessionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the session
+     * Select specific fields to fetch from the Session
      */
-    select?: sessionSelect<ExtArgs> | null
+    select?: SessionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the session
+     * Omit specific fields from the Session
      */
-    omit?: sessionOmit<ExtArgs> | null
+    omit?: SessionOmit<ExtArgs> | null
     /**
-     * The data needed to update a session.
+     * Choose, which related nodes to fetch as well
      */
-    data: XOR<sessionUpdateInput, sessionUncheckedUpdateInput>
+    include?: SessionInclude<ExtArgs> | null
     /**
-     * Choose, which session to update.
+     * The data needed to update a Session.
      */
-    where: sessionWhereUniqueInput
+    data: XOR<SessionUpdateInput, SessionUncheckedUpdateInput>
+    /**
+     * Choose, which Session to update.
+     */
+    where: SessionWhereUniqueInput
   }
 
   /**
-   * session updateMany
+   * Session updateMany
    */
-  export type sessionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SessionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update sessions.
+     * The data used to update Sessions.
      */
-    data: XOR<sessionUpdateManyMutationInput, sessionUncheckedUpdateManyInput>
+    data: XOR<SessionUpdateManyMutationInput, SessionUncheckedUpdateManyInput>
     /**
-     * Filter which sessions to update
+     * Filter which Sessions to update
      */
-    where?: sessionWhereInput
+    where?: SessionWhereInput
     /**
-     * Limit how many sessions to update.
+     * Limit how many Sessions to update.
      */
     limit?: number
   }
 
   /**
-   * session updateManyAndReturn
+   * Session updateManyAndReturn
    */
-  export type sessionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SessionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the session
+     * Select specific fields to fetch from the Session
      */
-    select?: sessionSelectUpdateManyAndReturn<ExtArgs> | null
+    select?: SessionSelectUpdateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the session
+     * Omit specific fields from the Session
      */
-    omit?: sessionOmit<ExtArgs> | null
+    omit?: SessionOmit<ExtArgs> | null
     /**
-     * The data used to update sessions.
+     * The data used to update Sessions.
      */
-    data: XOR<sessionUpdateManyMutationInput, sessionUncheckedUpdateManyInput>
+    data: XOR<SessionUpdateManyMutationInput, SessionUncheckedUpdateManyInput>
     /**
-     * Filter which sessions to update
+     * Filter which Sessions to update
      */
-    where?: sessionWhereInput
+    where?: SessionWhereInput
     /**
-     * Limit how many sessions to update.
+     * Limit how many Sessions to update.
      */
     limit?: number
   }
 
   /**
-   * session upsert
+   * Session upsert
    */
-  export type sessionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SessionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the session
+     * Select specific fields to fetch from the Session
      */
-    select?: sessionSelect<ExtArgs> | null
+    select?: SessionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the session
+     * Omit specific fields from the Session
      */
-    omit?: sessionOmit<ExtArgs> | null
+    omit?: SessionOmit<ExtArgs> | null
     /**
-     * The filter to search for the session to update in case it exists.
+     * Choose, which related nodes to fetch as well
      */
-    where: sessionWhereUniqueInput
+    include?: SessionInclude<ExtArgs> | null
     /**
-     * In case the session found by the `where` argument doesn't exist, create a new session with this data.
+     * The filter to search for the Session to update in case it exists.
      */
-    create: XOR<sessionCreateInput, sessionUncheckedCreateInput>
+    where: SessionWhereUniqueInput
     /**
-     * In case the session was found with the provided `where` argument, update it with this data.
+     * In case the Session found by the `where` argument doesn't exist, create a new Session with this data.
      */
-    update: XOR<sessionUpdateInput, sessionUncheckedUpdateInput>
+    create: XOR<SessionCreateInput, SessionUncheckedCreateInput>
+    /**
+     * In case the Session was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<SessionUpdateInput, SessionUncheckedUpdateInput>
   }
 
   /**
-   * session delete
+   * Session delete
    */
-  export type sessionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SessionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the session
+     * Select specific fields to fetch from the Session
      */
-    select?: sessionSelect<ExtArgs> | null
+    select?: SessionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the session
+     * Omit specific fields from the Session
      */
-    omit?: sessionOmit<ExtArgs> | null
+    omit?: SessionOmit<ExtArgs> | null
     /**
-     * Filter which session to delete.
+     * Choose, which related nodes to fetch as well
      */
-    where: sessionWhereUniqueInput
+    include?: SessionInclude<ExtArgs> | null
+    /**
+     * Filter which Session to delete.
+     */
+    where: SessionWhereUniqueInput
   }
 
   /**
-   * session deleteMany
+   * Session deleteMany
    */
-  export type sessionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SessionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which sessions to delete
+     * Filter which Sessions to delete
      */
-    where?: sessionWhereInput
+    where?: SessionWhereInput
     /**
-     * Limit how many sessions to delete.
+     * Limit how many Sessions to delete.
      */
     limit?: number
   }
 
   /**
-   * session without action
+   * Session.levelStates
    */
-  export type sessionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Session$levelStatesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the session
+     * Select specific fields to fetch from the Levelstate
      */
-    select?: sessionSelect<ExtArgs> | null
+    select?: LevelstateSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the session
+     * Omit specific fields from the Levelstate
      */
-    omit?: sessionOmit<ExtArgs> | null
+    omit?: LevelstateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LevelstateInclude<ExtArgs> | null
+    where?: LevelstateWhereInput
+    orderBy?: LevelstateOrderByWithRelationInput | LevelstateOrderByWithRelationInput[]
+    cursor?: LevelstateWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: LevelstateScalarFieldEnum | LevelstateScalarFieldEnum[]
+  }
+
+  /**
+   * Session without action
+   */
+  export type SessionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Session
+     */
+    select?: SessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Session
+     */
+    omit?: SessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SessionInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Levelstate
+   */
+
+  export type AggregateLevelstate = {
+    _count: LevelstateCountAggregateOutputType | null
+    _avg: LevelstateAvgAggregateOutputType | null
+    _sum: LevelstateSumAggregateOutputType | null
+    _min: LevelstateMinAggregateOutputType | null
+    _max: LevelstateMaxAggregateOutputType | null
+  }
+
+  export type LevelstateAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type LevelstateSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type LevelstateMinAggregateOutputType = {
+    id: number | null
+    name: string | null
+    sessionId: string | null
+    sonicFound: boolean | null
+    tailsFound: boolean | null
+    knucklesFound: boolean | null
+  }
+
+  export type LevelstateMaxAggregateOutputType = {
+    id: number | null
+    name: string | null
+    sessionId: string | null
+    sonicFound: boolean | null
+    tailsFound: boolean | null
+    knucklesFound: boolean | null
+  }
+
+  export type LevelstateCountAggregateOutputType = {
+    id: number
+    name: number
+    sessionId: number
+    sonicFound: number
+    tailsFound: number
+    knucklesFound: number
+    _all: number
+  }
+
+
+  export type LevelstateAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type LevelstateSumAggregateInputType = {
+    id?: true
+  }
+
+  export type LevelstateMinAggregateInputType = {
+    id?: true
+    name?: true
+    sessionId?: true
+    sonicFound?: true
+    tailsFound?: true
+    knucklesFound?: true
+  }
+
+  export type LevelstateMaxAggregateInputType = {
+    id?: true
+    name?: true
+    sessionId?: true
+    sonicFound?: true
+    tailsFound?: true
+    knucklesFound?: true
+  }
+
+  export type LevelstateCountAggregateInputType = {
+    id?: true
+    name?: true
+    sessionId?: true
+    sonicFound?: true
+    tailsFound?: true
+    knucklesFound?: true
+    _all?: true
+  }
+
+  export type LevelstateAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Levelstate to aggregate.
+     */
+    where?: LevelstateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Levelstates to fetch.
+     */
+    orderBy?: LevelstateOrderByWithRelationInput | LevelstateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: LevelstateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Levelstates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Levelstates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Levelstates
+    **/
+    _count?: true | LevelstateCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: LevelstateAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: LevelstateSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: LevelstateMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: LevelstateMaxAggregateInputType
+  }
+
+  export type GetLevelstateAggregateType<T extends LevelstateAggregateArgs> = {
+        [P in keyof T & keyof AggregateLevelstate]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateLevelstate[P]>
+      : GetScalarType<T[P], AggregateLevelstate[P]>
+  }
+
+
+
+
+  export type LevelstateGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LevelstateWhereInput
+    orderBy?: LevelstateOrderByWithAggregationInput | LevelstateOrderByWithAggregationInput[]
+    by: LevelstateScalarFieldEnum[] | LevelstateScalarFieldEnum
+    having?: LevelstateScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: LevelstateCountAggregateInputType | true
+    _avg?: LevelstateAvgAggregateInputType
+    _sum?: LevelstateSumAggregateInputType
+    _min?: LevelstateMinAggregateInputType
+    _max?: LevelstateMaxAggregateInputType
+  }
+
+  export type LevelstateGroupByOutputType = {
+    id: number
+    name: string | null
+    sessionId: string | null
+    sonicFound: boolean
+    tailsFound: boolean
+    knucklesFound: boolean
+    _count: LevelstateCountAggregateOutputType | null
+    _avg: LevelstateAvgAggregateOutputType | null
+    _sum: LevelstateSumAggregateOutputType | null
+    _min: LevelstateMinAggregateOutputType | null
+    _max: LevelstateMaxAggregateOutputType | null
+  }
+
+  type GetLevelstateGroupByPayload<T extends LevelstateGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<LevelstateGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof LevelstateGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], LevelstateGroupByOutputType[P]>
+            : GetScalarType<T[P], LevelstateGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type LevelstateSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    sessionId?: boolean
+    sonicFound?: boolean
+    tailsFound?: boolean
+    knucklesFound?: boolean
+    session?: boolean | Levelstate$sessionArgs<ExtArgs>
+  }, ExtArgs["result"]["levelstate"]>
+
+  export type LevelstateSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    sessionId?: boolean
+    sonicFound?: boolean
+    tailsFound?: boolean
+    knucklesFound?: boolean
+    session?: boolean | Levelstate$sessionArgs<ExtArgs>
+  }, ExtArgs["result"]["levelstate"]>
+
+  export type LevelstateSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    sessionId?: boolean
+    sonicFound?: boolean
+    tailsFound?: boolean
+    knucklesFound?: boolean
+    session?: boolean | Levelstate$sessionArgs<ExtArgs>
+  }, ExtArgs["result"]["levelstate"]>
+
+  export type LevelstateSelectScalar = {
+    id?: boolean
+    name?: boolean
+    sessionId?: boolean
+    sonicFound?: boolean
+    tailsFound?: boolean
+    knucklesFound?: boolean
+  }
+
+  export type LevelstateOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "sessionId" | "sonicFound" | "tailsFound" | "knucklesFound", ExtArgs["result"]["levelstate"]>
+  export type LevelstateInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    session?: boolean | Levelstate$sessionArgs<ExtArgs>
+  }
+  export type LevelstateIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    session?: boolean | Levelstate$sessionArgs<ExtArgs>
+  }
+  export type LevelstateIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    session?: boolean | Levelstate$sessionArgs<ExtArgs>
+  }
+
+  export type $LevelstatePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Levelstate"
+    objects: {
+      session: Prisma.$SessionPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      name: string | null
+      sessionId: string | null
+      sonicFound: boolean
+      tailsFound: boolean
+      knucklesFound: boolean
+    }, ExtArgs["result"]["levelstate"]>
+    composites: {}
+  }
+
+  type LevelstateGetPayload<S extends boolean | null | undefined | LevelstateDefaultArgs> = $Result.GetResult<Prisma.$LevelstatePayload, S>
+
+  type LevelstateCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<LevelstateFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: LevelstateCountAggregateInputType | true
+    }
+
+  export interface LevelstateDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Levelstate'], meta: { name: 'Levelstate' } }
+    /**
+     * Find zero or one Levelstate that matches the filter.
+     * @param {LevelstateFindUniqueArgs} args - Arguments to find a Levelstate
+     * @example
+     * // Get one Levelstate
+     * const levelstate = await prisma.levelstate.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends LevelstateFindUniqueArgs>(args: SelectSubset<T, LevelstateFindUniqueArgs<ExtArgs>>): Prisma__LevelstateClient<$Result.GetResult<Prisma.$LevelstatePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Levelstate that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {LevelstateFindUniqueOrThrowArgs} args - Arguments to find a Levelstate
+     * @example
+     * // Get one Levelstate
+     * const levelstate = await prisma.levelstate.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends LevelstateFindUniqueOrThrowArgs>(args: SelectSubset<T, LevelstateFindUniqueOrThrowArgs<ExtArgs>>): Prisma__LevelstateClient<$Result.GetResult<Prisma.$LevelstatePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Levelstate that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LevelstateFindFirstArgs} args - Arguments to find a Levelstate
+     * @example
+     * // Get one Levelstate
+     * const levelstate = await prisma.levelstate.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends LevelstateFindFirstArgs>(args?: SelectSubset<T, LevelstateFindFirstArgs<ExtArgs>>): Prisma__LevelstateClient<$Result.GetResult<Prisma.$LevelstatePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Levelstate that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LevelstateFindFirstOrThrowArgs} args - Arguments to find a Levelstate
+     * @example
+     * // Get one Levelstate
+     * const levelstate = await prisma.levelstate.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends LevelstateFindFirstOrThrowArgs>(args?: SelectSubset<T, LevelstateFindFirstOrThrowArgs<ExtArgs>>): Prisma__LevelstateClient<$Result.GetResult<Prisma.$LevelstatePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Levelstates that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LevelstateFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Levelstates
+     * const levelstates = await prisma.levelstate.findMany()
+     * 
+     * // Get first 10 Levelstates
+     * const levelstates = await prisma.levelstate.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const levelstateWithIdOnly = await prisma.levelstate.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends LevelstateFindManyArgs>(args?: SelectSubset<T, LevelstateFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LevelstatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Levelstate.
+     * @param {LevelstateCreateArgs} args - Arguments to create a Levelstate.
+     * @example
+     * // Create one Levelstate
+     * const Levelstate = await prisma.levelstate.create({
+     *   data: {
+     *     // ... data to create a Levelstate
+     *   }
+     * })
+     * 
+     */
+    create<T extends LevelstateCreateArgs>(args: SelectSubset<T, LevelstateCreateArgs<ExtArgs>>): Prisma__LevelstateClient<$Result.GetResult<Prisma.$LevelstatePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Levelstates.
+     * @param {LevelstateCreateManyArgs} args - Arguments to create many Levelstates.
+     * @example
+     * // Create many Levelstates
+     * const levelstate = await prisma.levelstate.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends LevelstateCreateManyArgs>(args?: SelectSubset<T, LevelstateCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Levelstates and returns the data saved in the database.
+     * @param {LevelstateCreateManyAndReturnArgs} args - Arguments to create many Levelstates.
+     * @example
+     * // Create many Levelstates
+     * const levelstate = await prisma.levelstate.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Levelstates and only return the `id`
+     * const levelstateWithIdOnly = await prisma.levelstate.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends LevelstateCreateManyAndReturnArgs>(args?: SelectSubset<T, LevelstateCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LevelstatePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Levelstate.
+     * @param {LevelstateDeleteArgs} args - Arguments to delete one Levelstate.
+     * @example
+     * // Delete one Levelstate
+     * const Levelstate = await prisma.levelstate.delete({
+     *   where: {
+     *     // ... filter to delete one Levelstate
+     *   }
+     * })
+     * 
+     */
+    delete<T extends LevelstateDeleteArgs>(args: SelectSubset<T, LevelstateDeleteArgs<ExtArgs>>): Prisma__LevelstateClient<$Result.GetResult<Prisma.$LevelstatePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Levelstate.
+     * @param {LevelstateUpdateArgs} args - Arguments to update one Levelstate.
+     * @example
+     * // Update one Levelstate
+     * const levelstate = await prisma.levelstate.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends LevelstateUpdateArgs>(args: SelectSubset<T, LevelstateUpdateArgs<ExtArgs>>): Prisma__LevelstateClient<$Result.GetResult<Prisma.$LevelstatePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Levelstates.
+     * @param {LevelstateDeleteManyArgs} args - Arguments to filter Levelstates to delete.
+     * @example
+     * // Delete a few Levelstates
+     * const { count } = await prisma.levelstate.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends LevelstateDeleteManyArgs>(args?: SelectSubset<T, LevelstateDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Levelstates.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LevelstateUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Levelstates
+     * const levelstate = await prisma.levelstate.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends LevelstateUpdateManyArgs>(args: SelectSubset<T, LevelstateUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Levelstates and returns the data updated in the database.
+     * @param {LevelstateUpdateManyAndReturnArgs} args - Arguments to update many Levelstates.
+     * @example
+     * // Update many Levelstates
+     * const levelstate = await prisma.levelstate.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Levelstates and only return the `id`
+     * const levelstateWithIdOnly = await prisma.levelstate.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends LevelstateUpdateManyAndReturnArgs>(args: SelectSubset<T, LevelstateUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LevelstatePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Levelstate.
+     * @param {LevelstateUpsertArgs} args - Arguments to update or create a Levelstate.
+     * @example
+     * // Update or create a Levelstate
+     * const levelstate = await prisma.levelstate.upsert({
+     *   create: {
+     *     // ... data to create a Levelstate
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Levelstate we want to update
+     *   }
+     * })
+     */
+    upsert<T extends LevelstateUpsertArgs>(args: SelectSubset<T, LevelstateUpsertArgs<ExtArgs>>): Prisma__LevelstateClient<$Result.GetResult<Prisma.$LevelstatePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Levelstates.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LevelstateCountArgs} args - Arguments to filter Levelstates to count.
+     * @example
+     * // Count the number of Levelstates
+     * const count = await prisma.levelstate.count({
+     *   where: {
+     *     // ... the filter for the Levelstates we want to count
+     *   }
+     * })
+    **/
+    count<T extends LevelstateCountArgs>(
+      args?: Subset<T, LevelstateCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], LevelstateCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Levelstate.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LevelstateAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends LevelstateAggregateArgs>(args: Subset<T, LevelstateAggregateArgs>): Prisma.PrismaPromise<GetLevelstateAggregateType<T>>
+
+    /**
+     * Group by Levelstate.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LevelstateGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends LevelstateGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: LevelstateGroupByArgs['orderBy'] }
+        : { orderBy?: LevelstateGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, LevelstateGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetLevelstateGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Levelstate model
+   */
+  readonly fields: LevelstateFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Levelstate.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__LevelstateClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    session<T extends Levelstate$sessionArgs<ExtArgs> = {}>(args?: Subset<T, Levelstate$sessionArgs<ExtArgs>>): Prisma__SessionClient<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Levelstate model
+   */
+  interface LevelstateFieldRefs {
+    readonly id: FieldRef<"Levelstate", 'Int'>
+    readonly name: FieldRef<"Levelstate", 'String'>
+    readonly sessionId: FieldRef<"Levelstate", 'String'>
+    readonly sonicFound: FieldRef<"Levelstate", 'Boolean'>
+    readonly tailsFound: FieldRef<"Levelstate", 'Boolean'>
+    readonly knucklesFound: FieldRef<"Levelstate", 'Boolean'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Levelstate findUnique
+   */
+  export type LevelstateFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Levelstate
+     */
+    select?: LevelstateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Levelstate
+     */
+    omit?: LevelstateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LevelstateInclude<ExtArgs> | null
+    /**
+     * Filter, which Levelstate to fetch.
+     */
+    where: LevelstateWhereUniqueInput
+  }
+
+  /**
+   * Levelstate findUniqueOrThrow
+   */
+  export type LevelstateFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Levelstate
+     */
+    select?: LevelstateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Levelstate
+     */
+    omit?: LevelstateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LevelstateInclude<ExtArgs> | null
+    /**
+     * Filter, which Levelstate to fetch.
+     */
+    where: LevelstateWhereUniqueInput
+  }
+
+  /**
+   * Levelstate findFirst
+   */
+  export type LevelstateFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Levelstate
+     */
+    select?: LevelstateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Levelstate
+     */
+    omit?: LevelstateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LevelstateInclude<ExtArgs> | null
+    /**
+     * Filter, which Levelstate to fetch.
+     */
+    where?: LevelstateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Levelstates to fetch.
+     */
+    orderBy?: LevelstateOrderByWithRelationInput | LevelstateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Levelstates.
+     */
+    cursor?: LevelstateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Levelstates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Levelstates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Levelstates.
+     */
+    distinct?: LevelstateScalarFieldEnum | LevelstateScalarFieldEnum[]
+  }
+
+  /**
+   * Levelstate findFirstOrThrow
+   */
+  export type LevelstateFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Levelstate
+     */
+    select?: LevelstateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Levelstate
+     */
+    omit?: LevelstateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LevelstateInclude<ExtArgs> | null
+    /**
+     * Filter, which Levelstate to fetch.
+     */
+    where?: LevelstateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Levelstates to fetch.
+     */
+    orderBy?: LevelstateOrderByWithRelationInput | LevelstateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Levelstates.
+     */
+    cursor?: LevelstateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Levelstates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Levelstates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Levelstates.
+     */
+    distinct?: LevelstateScalarFieldEnum | LevelstateScalarFieldEnum[]
+  }
+
+  /**
+   * Levelstate findMany
+   */
+  export type LevelstateFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Levelstate
+     */
+    select?: LevelstateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Levelstate
+     */
+    omit?: LevelstateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LevelstateInclude<ExtArgs> | null
+    /**
+     * Filter, which Levelstates to fetch.
+     */
+    where?: LevelstateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Levelstates to fetch.
+     */
+    orderBy?: LevelstateOrderByWithRelationInput | LevelstateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Levelstates.
+     */
+    cursor?: LevelstateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Levelstates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Levelstates.
+     */
+    skip?: number
+    distinct?: LevelstateScalarFieldEnum | LevelstateScalarFieldEnum[]
+  }
+
+  /**
+   * Levelstate create
+   */
+  export type LevelstateCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Levelstate
+     */
+    select?: LevelstateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Levelstate
+     */
+    omit?: LevelstateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LevelstateInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Levelstate.
+     */
+    data?: XOR<LevelstateCreateInput, LevelstateUncheckedCreateInput>
+  }
+
+  /**
+   * Levelstate createMany
+   */
+  export type LevelstateCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Levelstates.
+     */
+    data: LevelstateCreateManyInput | LevelstateCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Levelstate createManyAndReturn
+   */
+  export type LevelstateCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Levelstate
+     */
+    select?: LevelstateSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Levelstate
+     */
+    omit?: LevelstateOmit<ExtArgs> | null
+    /**
+     * The data used to create many Levelstates.
+     */
+    data: LevelstateCreateManyInput | LevelstateCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LevelstateIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Levelstate update
+   */
+  export type LevelstateUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Levelstate
+     */
+    select?: LevelstateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Levelstate
+     */
+    omit?: LevelstateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LevelstateInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Levelstate.
+     */
+    data: XOR<LevelstateUpdateInput, LevelstateUncheckedUpdateInput>
+    /**
+     * Choose, which Levelstate to update.
+     */
+    where: LevelstateWhereUniqueInput
+  }
+
+  /**
+   * Levelstate updateMany
+   */
+  export type LevelstateUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Levelstates.
+     */
+    data: XOR<LevelstateUpdateManyMutationInput, LevelstateUncheckedUpdateManyInput>
+    /**
+     * Filter which Levelstates to update
+     */
+    where?: LevelstateWhereInput
+    /**
+     * Limit how many Levelstates to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Levelstate updateManyAndReturn
+   */
+  export type LevelstateUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Levelstate
+     */
+    select?: LevelstateSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Levelstate
+     */
+    omit?: LevelstateOmit<ExtArgs> | null
+    /**
+     * The data used to update Levelstates.
+     */
+    data: XOR<LevelstateUpdateManyMutationInput, LevelstateUncheckedUpdateManyInput>
+    /**
+     * Filter which Levelstates to update
+     */
+    where?: LevelstateWhereInput
+    /**
+     * Limit how many Levelstates to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LevelstateIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Levelstate upsert
+   */
+  export type LevelstateUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Levelstate
+     */
+    select?: LevelstateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Levelstate
+     */
+    omit?: LevelstateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LevelstateInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Levelstate to update in case it exists.
+     */
+    where: LevelstateWhereUniqueInput
+    /**
+     * In case the Levelstate found by the `where` argument doesn't exist, create a new Levelstate with this data.
+     */
+    create: XOR<LevelstateCreateInput, LevelstateUncheckedCreateInput>
+    /**
+     * In case the Levelstate was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<LevelstateUpdateInput, LevelstateUncheckedUpdateInput>
+  }
+
+  /**
+   * Levelstate delete
+   */
+  export type LevelstateDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Levelstate
+     */
+    select?: LevelstateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Levelstate
+     */
+    omit?: LevelstateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LevelstateInclude<ExtArgs> | null
+    /**
+     * Filter which Levelstate to delete.
+     */
+    where: LevelstateWhereUniqueInput
+  }
+
+  /**
+   * Levelstate deleteMany
+   */
+  export type LevelstateDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Levelstates to delete
+     */
+    where?: LevelstateWhereInput
+    /**
+     * Limit how many Levelstates to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Levelstate.session
+   */
+  export type Levelstate$sessionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Session
+     */
+    select?: SessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Session
+     */
+    omit?: SessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SessionInclude<ExtArgs> | null
+    where?: SessionWhereInput
+  }
+
+  /**
+   * Levelstate without action
+   */
+  export type LevelstateDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Levelstate
+     */
+    select?: LevelstateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Levelstate
+     */
+    omit?: LevelstateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LevelstateInclude<ExtArgs> | null
   }
 
 
@@ -5455,10 +6780,10 @@ export namespace Prisma {
 
 
   export const ScoreScalarFieldEnum: {
-    id: 'id',
     name: 'name',
     time: 'time',
-    levelId: 'levelId'
+    levelId: 'levelId',
+    id: 'id'
   };
 
   export type ScoreScalarFieldEnum = (typeof ScoreScalarFieldEnum)[keyof typeof ScoreScalarFieldEnum]
@@ -5472,6 +6797,18 @@ export namespace Prisma {
   };
 
   export type SessionScalarFieldEnum = (typeof SessionScalarFieldEnum)[keyof typeof SessionScalarFieldEnum]
+
+
+  export const LevelstateScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    sessionId: 'sessionId',
+    sonicFound: 'sonicFound',
+    tailsFound: 'tailsFound',
+    knucklesFound: 'knucklesFound'
+  };
+
+  export type LevelstateScalarFieldEnum = (typeof LevelstateScalarFieldEnum)[keyof typeof LevelstateScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -5572,6 +6909,13 @@ export namespace Prisma {
    * Reference to a field of type 'DateTime[]'
    */
   export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
@@ -5691,23 +7035,23 @@ export namespace Prisma {
     AND?: ScoreWhereInput | ScoreWhereInput[]
     OR?: ScoreWhereInput[]
     NOT?: ScoreWhereInput | ScoreWhereInput[]
-    id?: StringFilter<"Score"> | string
     name?: StringNullableFilter<"Score"> | string | null
     time?: IntFilter<"Score"> | number
     levelId?: StringNullableFilter<"Score"> | string | null
+    id?: IntFilter<"Score"> | number
     Level?: XOR<LevelNullableScalarRelationFilter, LevelWhereInput> | null
   }
 
   export type ScoreOrderByWithRelationInput = {
-    id?: SortOrder
     name?: SortOrderInput | SortOrder
     time?: SortOrder
     levelId?: SortOrderInput | SortOrder
+    id?: SortOrder
     Level?: LevelOrderByWithRelationInput
   }
 
   export type ScoreWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
+    id?: number
     AND?: ScoreWhereInput | ScoreWhereInput[]
     OR?: ScoreWhereInput[]
     NOT?: ScoreWhereInput | ScoreWhereInput[]
@@ -5718,10 +7062,10 @@ export namespace Prisma {
   }, "id">
 
   export type ScoreOrderByWithAggregationInput = {
-    id?: SortOrder
     name?: SortOrderInput | SortOrder
     time?: SortOrder
     levelId?: SortOrderInput | SortOrder
+    id?: SortOrder
     _count?: ScoreCountOrderByAggregateInput
     _avg?: ScoreAvgOrderByAggregateInput
     _max?: ScoreMaxOrderByAggregateInput
@@ -5733,57 +7077,122 @@ export namespace Prisma {
     AND?: ScoreScalarWhereWithAggregatesInput | ScoreScalarWhereWithAggregatesInput[]
     OR?: ScoreScalarWhereWithAggregatesInput[]
     NOT?: ScoreScalarWhereWithAggregatesInput | ScoreScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Score"> | string
     name?: StringNullableWithAggregatesFilter<"Score"> | string | null
     time?: IntWithAggregatesFilter<"Score"> | number
     levelId?: StringNullableWithAggregatesFilter<"Score"> | string | null
+    id?: IntWithAggregatesFilter<"Score"> | number
   }
 
-  export type sessionWhereInput = {
-    AND?: sessionWhereInput | sessionWhereInput[]
-    OR?: sessionWhereInput[]
-    NOT?: sessionWhereInput | sessionWhereInput[]
-    sid?: StringFilter<"session"> | string
-    sess?: JsonFilter<"session">
-    expire?: DateTimeFilter<"session"> | Date | string
-    created_at?: DateTimeNullableFilter<"session"> | Date | string | null
+  export type SessionWhereInput = {
+    AND?: SessionWhereInput | SessionWhereInput[]
+    OR?: SessionWhereInput[]
+    NOT?: SessionWhereInput | SessionWhereInput[]
+    sid?: StringFilter<"Session"> | string
+    sess?: JsonFilter<"Session">
+    expire?: DateTimeFilter<"Session"> | Date | string
+    created_at?: DateTimeNullableFilter<"Session"> | Date | string | null
+    levelStates?: LevelstateListRelationFilter
   }
 
-  export type sessionOrderByWithRelationInput = {
+  export type SessionOrderByWithRelationInput = {
     sid?: SortOrder
     sess?: SortOrder
     expire?: SortOrder
     created_at?: SortOrderInput | SortOrder
+    levelStates?: LevelstateOrderByRelationAggregateInput
   }
 
-  export type sessionWhereUniqueInput = Prisma.AtLeast<{
+  export type SessionWhereUniqueInput = Prisma.AtLeast<{
     sid?: string
-    AND?: sessionWhereInput | sessionWhereInput[]
-    OR?: sessionWhereInput[]
-    NOT?: sessionWhereInput | sessionWhereInput[]
-    sess?: JsonFilter<"session">
-    expire?: DateTimeFilter<"session"> | Date | string
-    created_at?: DateTimeNullableFilter<"session"> | Date | string | null
+    AND?: SessionWhereInput | SessionWhereInput[]
+    OR?: SessionWhereInput[]
+    NOT?: SessionWhereInput | SessionWhereInput[]
+    sess?: JsonFilter<"Session">
+    expire?: DateTimeFilter<"Session"> | Date | string
+    created_at?: DateTimeNullableFilter<"Session"> | Date | string | null
+    levelStates?: LevelstateListRelationFilter
   }, "sid">
 
-  export type sessionOrderByWithAggregationInput = {
+  export type SessionOrderByWithAggregationInput = {
     sid?: SortOrder
     sess?: SortOrder
     expire?: SortOrder
     created_at?: SortOrderInput | SortOrder
-    _count?: sessionCountOrderByAggregateInput
-    _max?: sessionMaxOrderByAggregateInput
-    _min?: sessionMinOrderByAggregateInput
+    _count?: SessionCountOrderByAggregateInput
+    _max?: SessionMaxOrderByAggregateInput
+    _min?: SessionMinOrderByAggregateInput
   }
 
-  export type sessionScalarWhereWithAggregatesInput = {
-    AND?: sessionScalarWhereWithAggregatesInput | sessionScalarWhereWithAggregatesInput[]
-    OR?: sessionScalarWhereWithAggregatesInput[]
-    NOT?: sessionScalarWhereWithAggregatesInput | sessionScalarWhereWithAggregatesInput[]
-    sid?: StringWithAggregatesFilter<"session"> | string
-    sess?: JsonWithAggregatesFilter<"session">
-    expire?: DateTimeWithAggregatesFilter<"session"> | Date | string
-    created_at?: DateTimeNullableWithAggregatesFilter<"session"> | Date | string | null
+  export type SessionScalarWhereWithAggregatesInput = {
+    AND?: SessionScalarWhereWithAggregatesInput | SessionScalarWhereWithAggregatesInput[]
+    OR?: SessionScalarWhereWithAggregatesInput[]
+    NOT?: SessionScalarWhereWithAggregatesInput | SessionScalarWhereWithAggregatesInput[]
+    sid?: StringWithAggregatesFilter<"Session"> | string
+    sess?: JsonWithAggregatesFilter<"Session">
+    expire?: DateTimeWithAggregatesFilter<"Session"> | Date | string
+    created_at?: DateTimeNullableWithAggregatesFilter<"Session"> | Date | string | null
+  }
+
+  export type LevelstateWhereInput = {
+    AND?: LevelstateWhereInput | LevelstateWhereInput[]
+    OR?: LevelstateWhereInput[]
+    NOT?: LevelstateWhereInput | LevelstateWhereInput[]
+    id?: IntFilter<"Levelstate"> | number
+    name?: StringNullableFilter<"Levelstate"> | string | null
+    sessionId?: StringNullableFilter<"Levelstate"> | string | null
+    sonicFound?: BoolFilter<"Levelstate"> | boolean
+    tailsFound?: BoolFilter<"Levelstate"> | boolean
+    knucklesFound?: BoolFilter<"Levelstate"> | boolean
+    session?: XOR<SessionNullableScalarRelationFilter, SessionWhereInput> | null
+  }
+
+  export type LevelstateOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrderInput | SortOrder
+    sessionId?: SortOrderInput | SortOrder
+    sonicFound?: SortOrder
+    tailsFound?: SortOrder
+    knucklesFound?: SortOrder
+    session?: SessionOrderByWithRelationInput
+  }
+
+  export type LevelstateWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: LevelstateWhereInput | LevelstateWhereInput[]
+    OR?: LevelstateWhereInput[]
+    NOT?: LevelstateWhereInput | LevelstateWhereInput[]
+    name?: StringNullableFilter<"Levelstate"> | string | null
+    sessionId?: StringNullableFilter<"Levelstate"> | string | null
+    sonicFound?: BoolFilter<"Levelstate"> | boolean
+    tailsFound?: BoolFilter<"Levelstate"> | boolean
+    knucklesFound?: BoolFilter<"Levelstate"> | boolean
+    session?: XOR<SessionNullableScalarRelationFilter, SessionWhereInput> | null
+  }, "id">
+
+  export type LevelstateOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrderInput | SortOrder
+    sessionId?: SortOrderInput | SortOrder
+    sonicFound?: SortOrder
+    tailsFound?: SortOrder
+    knucklesFound?: SortOrder
+    _count?: LevelstateCountOrderByAggregateInput
+    _avg?: LevelstateAvgOrderByAggregateInput
+    _max?: LevelstateMaxOrderByAggregateInput
+    _min?: LevelstateMinOrderByAggregateInput
+    _sum?: LevelstateSumOrderByAggregateInput
+  }
+
+  export type LevelstateScalarWhereWithAggregatesInput = {
+    AND?: LevelstateScalarWhereWithAggregatesInput | LevelstateScalarWhereWithAggregatesInput[]
+    OR?: LevelstateScalarWhereWithAggregatesInput[]
+    NOT?: LevelstateScalarWhereWithAggregatesInput | LevelstateScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Levelstate"> | number
+    name?: StringNullableWithAggregatesFilter<"Levelstate"> | string | null
+    sessionId?: StringNullableWithAggregatesFilter<"Levelstate"> | string | null
+    sonicFound?: BoolWithAggregatesFilter<"Levelstate"> | boolean
+    tailsFound?: BoolWithAggregatesFilter<"Levelstate"> | boolean
+    knucklesFound?: BoolWithAggregatesFilter<"Levelstate"> | boolean
   }
 
   export type LevelCreateInput = {
@@ -5875,100 +7284,160 @@ export namespace Prisma {
   }
 
   export type ScoreCreateInput = {
-    id: string
     name?: string | null
     time: number
     Level?: LevelCreateNestedOneWithoutScoresInput
   }
 
   export type ScoreUncheckedCreateInput = {
-    id: string
     name?: string | null
     time: number
     levelId?: string | null
+    id?: number
   }
 
   export type ScoreUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     time?: IntFieldUpdateOperationsInput | number
     Level?: LevelUpdateOneWithoutScoresNestedInput
   }
 
   export type ScoreUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     time?: IntFieldUpdateOperationsInput | number
     levelId?: NullableStringFieldUpdateOperationsInput | string | null
+    id?: IntFieldUpdateOperationsInput | number
   }
 
   export type ScoreCreateManyInput = {
-    id: string
     name?: string | null
     time: number
     levelId?: string | null
+    id?: number
   }
 
   export type ScoreUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     time?: IntFieldUpdateOperationsInput | number
   }
 
   export type ScoreUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     time?: IntFieldUpdateOperationsInput | number
     levelId?: NullableStringFieldUpdateOperationsInput | string | null
+    id?: IntFieldUpdateOperationsInput | number
   }
 
-  export type sessionCreateInput = {
+  export type SessionCreateInput = {
+    sid: string
+    sess: JsonNullValueInput | InputJsonValue
+    expire: Date | string
+    created_at?: Date | string | null
+    levelStates?: LevelstateCreateNestedManyWithoutSessionInput
+  }
+
+  export type SessionUncheckedCreateInput = {
+    sid: string
+    sess: JsonNullValueInput | InputJsonValue
+    expire: Date | string
+    created_at?: Date | string | null
+    levelStates?: LevelstateUncheckedCreateNestedManyWithoutSessionInput
+  }
+
+  export type SessionUpdateInput = {
+    sid?: StringFieldUpdateOperationsInput | string
+    sess?: JsonNullValueInput | InputJsonValue
+    expire?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    levelStates?: LevelstateUpdateManyWithoutSessionNestedInput
+  }
+
+  export type SessionUncheckedUpdateInput = {
+    sid?: StringFieldUpdateOperationsInput | string
+    sess?: JsonNullValueInput | InputJsonValue
+    expire?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    levelStates?: LevelstateUncheckedUpdateManyWithoutSessionNestedInput
+  }
+
+  export type SessionCreateManyInput = {
     sid: string
     sess: JsonNullValueInput | InputJsonValue
     expire: Date | string
     created_at?: Date | string | null
   }
 
-  export type sessionUncheckedCreateInput = {
-    sid: string
-    sess: JsonNullValueInput | InputJsonValue
-    expire: Date | string
-    created_at?: Date | string | null
-  }
-
-  export type sessionUpdateInput = {
+  export type SessionUpdateManyMutationInput = {
     sid?: StringFieldUpdateOperationsInput | string
     sess?: JsonNullValueInput | InputJsonValue
     expire?: DateTimeFieldUpdateOperationsInput | Date | string
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
-  export type sessionUncheckedUpdateInput = {
+  export type SessionUncheckedUpdateManyInput = {
     sid?: StringFieldUpdateOperationsInput | string
     sess?: JsonNullValueInput | InputJsonValue
     expire?: DateTimeFieldUpdateOperationsInput | Date | string
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
-  export type sessionCreateManyInput = {
-    sid: string
-    sess: JsonNullValueInput | InputJsonValue
-    expire: Date | string
-    created_at?: Date | string | null
+  export type LevelstateCreateInput = {
+    name?: string | null
+    sonicFound?: boolean
+    tailsFound?: boolean
+    knucklesFound?: boolean
+    session?: SessionCreateNestedOneWithoutLevelStatesInput
   }
 
-  export type sessionUpdateManyMutationInput = {
-    sid?: StringFieldUpdateOperationsInput | string
-    sess?: JsonNullValueInput | InputJsonValue
-    expire?: DateTimeFieldUpdateOperationsInput | Date | string
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  export type LevelstateUncheckedCreateInput = {
+    id?: number
+    name?: string | null
+    sessionId?: string | null
+    sonicFound?: boolean
+    tailsFound?: boolean
+    knucklesFound?: boolean
   }
 
-  export type sessionUncheckedUpdateManyInput = {
-    sid?: StringFieldUpdateOperationsInput | string
-    sess?: JsonNullValueInput | InputJsonValue
-    expire?: DateTimeFieldUpdateOperationsInput | Date | string
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  export type LevelstateUpdateInput = {
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    sonicFound?: BoolFieldUpdateOperationsInput | boolean
+    tailsFound?: BoolFieldUpdateOperationsInput | boolean
+    knucklesFound?: BoolFieldUpdateOperationsInput | boolean
+    session?: SessionUpdateOneWithoutLevelStatesNestedInput
+  }
+
+  export type LevelstateUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    sessionId?: NullableStringFieldUpdateOperationsInput | string | null
+    sonicFound?: BoolFieldUpdateOperationsInput | boolean
+    tailsFound?: BoolFieldUpdateOperationsInput | boolean
+    knucklesFound?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type LevelstateCreateManyInput = {
+    id?: number
+    name?: string | null
+    sessionId?: string | null
+    sonicFound?: boolean
+    tailsFound?: boolean
+    knucklesFound?: boolean
+  }
+
+  export type LevelstateUpdateManyMutationInput = {
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    sonicFound?: BoolFieldUpdateOperationsInput | boolean
+    tailsFound?: BoolFieldUpdateOperationsInput | boolean
+    knucklesFound?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type LevelstateUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    sessionId?: NullableStringFieldUpdateOperationsInput | string | null
+    sonicFound?: BoolFieldUpdateOperationsInput | boolean
+    tailsFound?: BoolFieldUpdateOperationsInput | boolean
+    knucklesFound?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -6143,32 +7612,34 @@ export namespace Prisma {
   }
 
   export type ScoreCountOrderByAggregateInput = {
-    id?: SortOrder
     name?: SortOrder
     time?: SortOrder
     levelId?: SortOrder
+    id?: SortOrder
   }
 
   export type ScoreAvgOrderByAggregateInput = {
     time?: SortOrder
+    id?: SortOrder
   }
 
   export type ScoreMaxOrderByAggregateInput = {
-    id?: SortOrder
     name?: SortOrder
     time?: SortOrder
     levelId?: SortOrder
+    id?: SortOrder
   }
 
   export type ScoreMinOrderByAggregateInput = {
-    id?: SortOrder
     name?: SortOrder
     time?: SortOrder
     levelId?: SortOrder
+    id?: SortOrder
   }
 
   export type ScoreSumOrderByAggregateInput = {
     time?: SortOrder
+    id?: SortOrder
   }
   export type JsonFilter<$PrismaModel = never> =
     | PatchUndefined<
@@ -6216,20 +7687,30 @@ export namespace Prisma {
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
-  export type sessionCountOrderByAggregateInput = {
+  export type LevelstateListRelationFilter = {
+    every?: LevelstateWhereInput
+    some?: LevelstateWhereInput
+    none?: LevelstateWhereInput
+  }
+
+  export type LevelstateOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type SessionCountOrderByAggregateInput = {
     sid?: SortOrder
     sess?: SortOrder
     expire?: SortOrder
     created_at?: SortOrder
   }
 
-  export type sessionMaxOrderByAggregateInput = {
+  export type SessionMaxOrderByAggregateInput = {
     sid?: SortOrder
     expire?: SortOrder
     created_at?: SortOrder
   }
 
-  export type sessionMinOrderByAggregateInput = {
+  export type SessionMinOrderByAggregateInput = {
     sid?: SortOrder
     expire?: SortOrder
     created_at?: SortOrder
@@ -6287,6 +7768,59 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedDateTimeNullableFilter<$PrismaModel>
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type SessionNullableScalarRelationFilter = {
+    is?: SessionWhereInput | null
+    isNot?: SessionWhereInput | null
+  }
+
+  export type LevelstateCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    sessionId?: SortOrder
+    sonicFound?: SortOrder
+    tailsFound?: SortOrder
+    knucklesFound?: SortOrder
+  }
+
+  export type LevelstateAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type LevelstateMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    sessionId?: SortOrder
+    sonicFound?: SortOrder
+    tailsFound?: SortOrder
+    knucklesFound?: SortOrder
+  }
+
+  export type LevelstateMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    sessionId?: SortOrder
+    sonicFound?: SortOrder
+    tailsFound?: SortOrder
+    knucklesFound?: SortOrder
+  }
+
+  export type LevelstateSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type ItemCreateNestedManyWithoutLevelInput = {
@@ -6421,12 +7955,74 @@ export namespace Prisma {
     update?: XOR<XOR<LevelUpdateToOneWithWhereWithoutScoresInput, LevelUpdateWithoutScoresInput>, LevelUncheckedUpdateWithoutScoresInput>
   }
 
+  export type LevelstateCreateNestedManyWithoutSessionInput = {
+    create?: XOR<LevelstateCreateWithoutSessionInput, LevelstateUncheckedCreateWithoutSessionInput> | LevelstateCreateWithoutSessionInput[] | LevelstateUncheckedCreateWithoutSessionInput[]
+    connectOrCreate?: LevelstateCreateOrConnectWithoutSessionInput | LevelstateCreateOrConnectWithoutSessionInput[]
+    createMany?: LevelstateCreateManySessionInputEnvelope
+    connect?: LevelstateWhereUniqueInput | LevelstateWhereUniqueInput[]
+  }
+
+  export type LevelstateUncheckedCreateNestedManyWithoutSessionInput = {
+    create?: XOR<LevelstateCreateWithoutSessionInput, LevelstateUncheckedCreateWithoutSessionInput> | LevelstateCreateWithoutSessionInput[] | LevelstateUncheckedCreateWithoutSessionInput[]
+    connectOrCreate?: LevelstateCreateOrConnectWithoutSessionInput | LevelstateCreateOrConnectWithoutSessionInput[]
+    createMany?: LevelstateCreateManySessionInputEnvelope
+    connect?: LevelstateWhereUniqueInput | LevelstateWhereUniqueInput[]
+  }
+
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
   }
 
   export type NullableDateTimeFieldUpdateOperationsInput = {
     set?: Date | string | null
+  }
+
+  export type LevelstateUpdateManyWithoutSessionNestedInput = {
+    create?: XOR<LevelstateCreateWithoutSessionInput, LevelstateUncheckedCreateWithoutSessionInput> | LevelstateCreateWithoutSessionInput[] | LevelstateUncheckedCreateWithoutSessionInput[]
+    connectOrCreate?: LevelstateCreateOrConnectWithoutSessionInput | LevelstateCreateOrConnectWithoutSessionInput[]
+    upsert?: LevelstateUpsertWithWhereUniqueWithoutSessionInput | LevelstateUpsertWithWhereUniqueWithoutSessionInput[]
+    createMany?: LevelstateCreateManySessionInputEnvelope
+    set?: LevelstateWhereUniqueInput | LevelstateWhereUniqueInput[]
+    disconnect?: LevelstateWhereUniqueInput | LevelstateWhereUniqueInput[]
+    delete?: LevelstateWhereUniqueInput | LevelstateWhereUniqueInput[]
+    connect?: LevelstateWhereUniqueInput | LevelstateWhereUniqueInput[]
+    update?: LevelstateUpdateWithWhereUniqueWithoutSessionInput | LevelstateUpdateWithWhereUniqueWithoutSessionInput[]
+    updateMany?: LevelstateUpdateManyWithWhereWithoutSessionInput | LevelstateUpdateManyWithWhereWithoutSessionInput[]
+    deleteMany?: LevelstateScalarWhereInput | LevelstateScalarWhereInput[]
+  }
+
+  export type LevelstateUncheckedUpdateManyWithoutSessionNestedInput = {
+    create?: XOR<LevelstateCreateWithoutSessionInput, LevelstateUncheckedCreateWithoutSessionInput> | LevelstateCreateWithoutSessionInput[] | LevelstateUncheckedCreateWithoutSessionInput[]
+    connectOrCreate?: LevelstateCreateOrConnectWithoutSessionInput | LevelstateCreateOrConnectWithoutSessionInput[]
+    upsert?: LevelstateUpsertWithWhereUniqueWithoutSessionInput | LevelstateUpsertWithWhereUniqueWithoutSessionInput[]
+    createMany?: LevelstateCreateManySessionInputEnvelope
+    set?: LevelstateWhereUniqueInput | LevelstateWhereUniqueInput[]
+    disconnect?: LevelstateWhereUniqueInput | LevelstateWhereUniqueInput[]
+    delete?: LevelstateWhereUniqueInput | LevelstateWhereUniqueInput[]
+    connect?: LevelstateWhereUniqueInput | LevelstateWhereUniqueInput[]
+    update?: LevelstateUpdateWithWhereUniqueWithoutSessionInput | LevelstateUpdateWithWhereUniqueWithoutSessionInput[]
+    updateMany?: LevelstateUpdateManyWithWhereWithoutSessionInput | LevelstateUpdateManyWithWhereWithoutSessionInput[]
+    deleteMany?: LevelstateScalarWhereInput | LevelstateScalarWhereInput[]
+  }
+
+  export type SessionCreateNestedOneWithoutLevelStatesInput = {
+    create?: XOR<SessionCreateWithoutLevelStatesInput, SessionUncheckedCreateWithoutLevelStatesInput>
+    connectOrCreate?: SessionCreateOrConnectWithoutLevelStatesInput
+    connect?: SessionWhereUniqueInput
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
+  }
+
+  export type SessionUpdateOneWithoutLevelStatesNestedInput = {
+    create?: XOR<SessionCreateWithoutLevelStatesInput, SessionUncheckedCreateWithoutLevelStatesInput>
+    connectOrCreate?: SessionCreateOrConnectWithoutLevelStatesInput
+    upsert?: SessionUpsertWithoutLevelStatesInput
+    disconnect?: SessionWhereInput | boolean
+    delete?: SessionWhereInput | boolean
+    connect?: SessionWhereUniqueInput
+    update?: XOR<XOR<SessionUpdateToOneWithWhereWithoutLevelStatesInput, SessionUpdateWithoutLevelStatesInput>, SessionUncheckedUpdateWithoutLevelStatesInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -6613,6 +8209,19 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
   export type ItemCreateWithoutLevelInput = {
     name: string
     locationX: number
@@ -6637,15 +8246,14 @@ export namespace Prisma {
   }
 
   export type ScoreCreateWithoutLevelInput = {
-    id: string
     name?: string | null
     time: number
   }
 
   export type ScoreUncheckedCreateWithoutLevelInput = {
-    id: string
     name?: string | null
     time: number
+    id?: number
   }
 
   export type ScoreCreateOrConnectWithoutLevelInput = {
@@ -6705,10 +8313,10 @@ export namespace Prisma {
     AND?: ScoreScalarWhereInput | ScoreScalarWhereInput[]
     OR?: ScoreScalarWhereInput[]
     NOT?: ScoreScalarWhereInput | ScoreScalarWhereInput[]
-    id?: StringFilter<"Score"> | string
     name?: StringNullableFilter<"Score"> | string | null
     time?: IntFilter<"Score"> | number
     levelId?: StringNullableFilter<"Score"> | string | null
+    id?: IntFilter<"Score"> | number
   }
 
   export type LevelCreateWithoutItemsInput = {
@@ -6783,6 +8391,103 @@ export namespace Prisma {
     items?: ItemUncheckedUpdateManyWithoutLevelNestedInput
   }
 
+  export type LevelstateCreateWithoutSessionInput = {
+    name?: string | null
+    sonicFound?: boolean
+    tailsFound?: boolean
+    knucklesFound?: boolean
+  }
+
+  export type LevelstateUncheckedCreateWithoutSessionInput = {
+    id?: number
+    name?: string | null
+    sonicFound?: boolean
+    tailsFound?: boolean
+    knucklesFound?: boolean
+  }
+
+  export type LevelstateCreateOrConnectWithoutSessionInput = {
+    where: LevelstateWhereUniqueInput
+    create: XOR<LevelstateCreateWithoutSessionInput, LevelstateUncheckedCreateWithoutSessionInput>
+  }
+
+  export type LevelstateCreateManySessionInputEnvelope = {
+    data: LevelstateCreateManySessionInput | LevelstateCreateManySessionInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type LevelstateUpsertWithWhereUniqueWithoutSessionInput = {
+    where: LevelstateWhereUniqueInput
+    update: XOR<LevelstateUpdateWithoutSessionInput, LevelstateUncheckedUpdateWithoutSessionInput>
+    create: XOR<LevelstateCreateWithoutSessionInput, LevelstateUncheckedCreateWithoutSessionInput>
+  }
+
+  export type LevelstateUpdateWithWhereUniqueWithoutSessionInput = {
+    where: LevelstateWhereUniqueInput
+    data: XOR<LevelstateUpdateWithoutSessionInput, LevelstateUncheckedUpdateWithoutSessionInput>
+  }
+
+  export type LevelstateUpdateManyWithWhereWithoutSessionInput = {
+    where: LevelstateScalarWhereInput
+    data: XOR<LevelstateUpdateManyMutationInput, LevelstateUncheckedUpdateManyWithoutSessionInput>
+  }
+
+  export type LevelstateScalarWhereInput = {
+    AND?: LevelstateScalarWhereInput | LevelstateScalarWhereInput[]
+    OR?: LevelstateScalarWhereInput[]
+    NOT?: LevelstateScalarWhereInput | LevelstateScalarWhereInput[]
+    id?: IntFilter<"Levelstate"> | number
+    name?: StringNullableFilter<"Levelstate"> | string | null
+    sessionId?: StringNullableFilter<"Levelstate"> | string | null
+    sonicFound?: BoolFilter<"Levelstate"> | boolean
+    tailsFound?: BoolFilter<"Levelstate"> | boolean
+    knucklesFound?: BoolFilter<"Levelstate"> | boolean
+  }
+
+  export type SessionCreateWithoutLevelStatesInput = {
+    sid: string
+    sess: JsonNullValueInput | InputJsonValue
+    expire: Date | string
+    created_at?: Date | string | null
+  }
+
+  export type SessionUncheckedCreateWithoutLevelStatesInput = {
+    sid: string
+    sess: JsonNullValueInput | InputJsonValue
+    expire: Date | string
+    created_at?: Date | string | null
+  }
+
+  export type SessionCreateOrConnectWithoutLevelStatesInput = {
+    where: SessionWhereUniqueInput
+    create: XOR<SessionCreateWithoutLevelStatesInput, SessionUncheckedCreateWithoutLevelStatesInput>
+  }
+
+  export type SessionUpsertWithoutLevelStatesInput = {
+    update: XOR<SessionUpdateWithoutLevelStatesInput, SessionUncheckedUpdateWithoutLevelStatesInput>
+    create: XOR<SessionCreateWithoutLevelStatesInput, SessionUncheckedCreateWithoutLevelStatesInput>
+    where?: SessionWhereInput
+  }
+
+  export type SessionUpdateToOneWithWhereWithoutLevelStatesInput = {
+    where?: SessionWhereInput
+    data: XOR<SessionUpdateWithoutLevelStatesInput, SessionUncheckedUpdateWithoutLevelStatesInput>
+  }
+
+  export type SessionUpdateWithoutLevelStatesInput = {
+    sid?: StringFieldUpdateOperationsInput | string
+    sess?: JsonNullValueInput | InputJsonValue
+    expire?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type SessionUncheckedUpdateWithoutLevelStatesInput = {
+    sid?: StringFieldUpdateOperationsInput | string
+    sess?: JsonNullValueInput | InputJsonValue
+    expire?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
   export type ItemCreateManyLevelInput = {
     id?: number
     name: string
@@ -6791,9 +8496,9 @@ export namespace Prisma {
   }
 
   export type ScoreCreateManyLevelInput = {
-    id: string
     name?: string | null
     time: number
+    id?: number
   }
 
   export type ItemUpdateWithoutLevelInput = {
@@ -6817,21 +8522,51 @@ export namespace Prisma {
   }
 
   export type ScoreUpdateWithoutLevelInput = {
-    id?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     time?: IntFieldUpdateOperationsInput | number
   }
 
   export type ScoreUncheckedUpdateWithoutLevelInput = {
-    id?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     time?: IntFieldUpdateOperationsInput | number
+    id?: IntFieldUpdateOperationsInput | number
   }
 
   export type ScoreUncheckedUpdateManyWithoutLevelInput = {
-    id?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     time?: IntFieldUpdateOperationsInput | number
+    id?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type LevelstateCreateManySessionInput = {
+    id?: number
+    name?: string | null
+    sonicFound?: boolean
+    tailsFound?: boolean
+    knucklesFound?: boolean
+  }
+
+  export type LevelstateUpdateWithoutSessionInput = {
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    sonicFound?: BoolFieldUpdateOperationsInput | boolean
+    tailsFound?: BoolFieldUpdateOperationsInput | boolean
+    knucklesFound?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type LevelstateUncheckedUpdateWithoutSessionInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    sonicFound?: BoolFieldUpdateOperationsInput | boolean
+    tailsFound?: BoolFieldUpdateOperationsInput | boolean
+    knucklesFound?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type LevelstateUncheckedUpdateManyWithoutSessionInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    sonicFound?: BoolFieldUpdateOperationsInput | boolean
+    tailsFound?: BoolFieldUpdateOperationsInput | boolean
+    knucklesFound?: BoolFieldUpdateOperationsInput | boolean
   }
 
 

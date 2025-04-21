@@ -12,8 +12,8 @@ function expressSession() {
     secret: "key",
     resave: false,
     saveUninitialized: true,
-    store: new pgSession({ pool: pgPool, tableName: "session" }),
-    cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 }, // 30 Days,
+    store: new pgSession({ pool: pgPool, tableName: "Session" }),
+    cookie: { maxAge: 24 * 60 * 60 * 1000 }, // 1 Day,
   });
 }
 

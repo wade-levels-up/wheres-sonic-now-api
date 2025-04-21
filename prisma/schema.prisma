@@ -1,6 +1,6 @@
 generator client {
   provider = "prisma-client-js"
-  output   = "../generated/prisma"
+  output   = "../node_modules/.prisma/client"
 }
 
 datasource db {
@@ -24,28 +24,29 @@ model Item {
 }
 
 model Score {
-  id      String  @unique
   name    String?
   time    Int
   levelId String?
+  id      Int     @id @default(autoincrement())
   Level   Level?  @relation(fields: [levelId], references: [id])
 }
 
-model session {
-  sid         String       @id @db.VarChar
+model Session {
+  sid         String       @id
   sess        Json         @db.Json
   expire      DateTime     @db.Timestamp(6)
   created_at  DateTime?    @default(now()) @db.Timestamp(6)
-  levelStates LevelState[]
+  levelStates Levelstate[]
 
   @@index([expire], map: "IDX_session_expire")
 }
 
-model LevelState {
-  id            String   @unique
+model Levelstate {
+  id            Int      @id @default(autoincrement())
+  name          String?
   sessionId     String?
-  session       session? @relation(fields: [sessionId], references: [sid])
   sonicFound    Boolean  @default(false)
   tailsFound    Boolean  @default(false)
   knucklesFound Boolean  @default(false)
+  session       Session? @relation(fields: [sessionId], references: [sid])
 }

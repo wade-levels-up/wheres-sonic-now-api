@@ -1,10 +1,18 @@
 const asyncHandler = require("express-async-handler");
 const { executeWithPrisma } = require("../utils/executeWithPrisma");
+const prisma = require("../utils/prismaClient");
 
-const setCookie = asyncHandler(async (req, res) => {
+const setupSession = asyncHandler(async (req, res) => {
   try {
-    console.log("Setting cookie");
-    console.log(req.session);
+    await executeWithPrisma(async (prisma) => {
+      await prisma.levelstate.create({
+        data: {
+          name: "ice-cap-zone",
+          sessionId: req.sessionID,
+        },
+      });
+    });
+
     res.status(200).json({ status: "success" });
   } catch (error) {
     throw new Error(error);
@@ -43,4 +51,4 @@ const checkItemLocation = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = { checkItemLocation, setCookie };
+module.exports = { checkItemLocation, setupSession };
