@@ -4,11 +4,14 @@ const prisma = require("../utils/prismaClient");
 
 const setupSession = asyncHandler(async (req, res) => {
   try {
+    // Update session level name
     await executeWithPrisma(async (prisma) => {
-      await prisma.levelstate.create({
+      await prisma.session.update({
         data: {
-          name: "ice-cap-zone",
-          sessionId: req.sessionID,
+          level: req.params.levelName,
+        },
+        where: {
+          sid: req.sessionID,
         },
       });
     });

@@ -4,7 +4,7 @@ const levelsController = require("../controllers/levelsController");
 const session = require("../middlewares/expressSession");
 
 levelsRouter.get(
-  "/",
+  "/:levelName",
   session(),
   (req, res, next) => {
     req.session.save((err) => {
