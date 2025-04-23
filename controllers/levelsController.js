@@ -25,7 +25,7 @@ const setupSession = asyncHandler(async (req, res) => {
 const checkItemLocation = asyncHandler(async (req, res) => {
   try {
     console.log(req.body);
-    return await executeWithPrisma(async (prisma) => {
+    await executeWithPrisma(async (prisma) => {
       const item = await prisma.item.findMany({
         where: {
           levelId: req.body.level,
@@ -47,6 +47,19 @@ const checkItemLocation = asyncHandler(async (req, res) => {
         isFound = true;
       }
       console.log(isFound);
+      console.log(req.sessionID);
+
+      if (isFound && req.session) {
+        await prisma.session.update({
+          data: {
+            [req.body.name.toLowerCase() + "Found"]: true,
+          },
+          where: {
+            sid: req.sessionID,
+          },
+        });
+      }
+
       res.json({ isFound });
     });
   } catch (error) {
