@@ -1,10 +1,7 @@
 const { Router } = require("express");
 const levelsRouter = Router();
 const levelsController = require("../controllers/levelsController");
-const {
-  createNewExpressSession,
-  createExpressSession,
-} = require("../middlewares/expressSession");
+const createExpressSession = require("../middlewares/expressSession");
 
 const saveSession = (req, res, next) => {
   req.session.save((err) => {
@@ -18,7 +15,7 @@ const saveSession = (req, res, next) => {
 
 levelsRouter.get(
   "/:levelName",
-  createNewExpressSession(),
+  createExpressSession({ regenerate: true }),
   saveSession,
   levelsController.setupSession
 );

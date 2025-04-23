@@ -3,7 +3,7 @@ const session = require("express-session");
 const pg = require("pg");
 const pgSession = require("connect-pg-simple")(session);
 
-function createNewExpressSession() {
+function createExpressSession({ regenerate = false } = {}) {
   const pgPool = new pg.Pool({
     connectionString: process.env.DATABASE_URL,
   });
@@ -11,38 +11,35 @@ function createNewExpressSession() {
   const sessionMiddleware = session({
     secret: "key",
     resave: false,
-    saveUninitialized: true,
-    store: new pgSession({ pool: pgPool, tableName: "Session" }),
-    cookie: { maxAge: 24 * 60 * 60 * 1000 }, // 1 Day,
+    saveUninitialized: false,
+    store: new pgSession({
+      pool: pgPool,
+      tableName: "Session",
+      pruneSessionInterval: 60,
+    }),
+    cookie: { maxAge: 60 * 60 * 1000 }, // 1 Hour
   });
 
   return (req, res, next) => {
     sessionMiddleware(req, res, (err) => {
       if (err) return next(err);
 
-      req.session.regenerate((err) => {
-        if (err) {
-          console.log("Error regenerating session", err);
-          return next(err);
-        }
+      if (regenerate) {
+        // Regenerate the session if needed
+        req.session.regenerate((err) => {
+          if (err) {
+            console.log("Error regenerating session", err);
+            return next(err);
+          }
+          console.log("New Session ID:", req.sessionID);
+          next();
+        });
+      } else {
+        // Simply use the existing session
         next();
-      });
+      }
     });
   };
 }
 
-function createExpressSession() {
-  const pgPool = new pg.Pool({
-    connectionString: process.env.DATABASE_URL,
-  });
-
-  return session({
-    secret: "key",
-    resave: false,
-    saveUninitialized: true,
-    store: new pgSession({ pool: pgPool, tableName: "Session" }),
-    cookie: { maxAge: 24 * 60 * 60 * 1000 }, // 1 Day,
-  });
-}
-
-module.exports = { createNewExpressSession, createExpressSession };
+module.exports = createExpressSession;
