@@ -49,6 +49,7 @@ const checkItemLocation = asyncHandler(async (req, res) => {
       console.log(isFound);
       console.log(req.sessionID);
 
+      // If an item is found update the session
       if (isFound && req.session) {
         await prisma.session.update({
           data: {
@@ -60,7 +61,20 @@ const checkItemLocation = asyncHandler(async (req, res) => {
         });
       }
 
-      res.json({ isFound });
+      // Check if all items are found
+      const gameSession = await prisma.session.findUnique({
+        where: {
+          sid: req.sessionID,
+        },
+      });
+
+      const { sonicFound, tailsFound, knucklesFound } = gameSession;
+      if (sonicFound && tailsFound && knucklesFound) {
+        const allFound = true;
+        res.json({ isFound, allFound });
+      } else {
+        res.json({ isFound });
+      }
     });
   } catch (error) {
     throw new Error(error);
