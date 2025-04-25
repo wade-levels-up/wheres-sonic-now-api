@@ -24,7 +24,6 @@ const setupSession = asyncHandler(async (req, res) => {
 
 const checkItemLocation = asyncHandler(async (req, res) => {
   try {
-    console.log(req.body);
     await executeWithPrisma(async (prisma) => {
       const item = await prisma.item.findMany({
         where: {
@@ -46,8 +45,6 @@ const checkItemLocation = asyncHandler(async (req, res) => {
       ) {
         isFound = true;
       }
-      console.log(isFound);
-      console.log(req.sessionID);
 
       // If an item is found update the session
       if (isFound && req.session) {
@@ -71,6 +68,27 @@ const checkItemLocation = asyncHandler(async (req, res) => {
       const { sonicFound, tailsFound, knucklesFound } = gameSession;
       if (sonicFound && tailsFound && knucklesFound) {
         const allFound = true;
+
+        // Save the finished time to the session
+        await prisma.$executeRaw`
+        UPDATE "Session"
+        SET "finished_at" = NOW()
+        WHERE "sid" = ${req.sessionID};
+      `;
+
+        const finishedSession = await prisma.session.findUnique({
+          where: {
+            sid: req.sessionID,
+          },
+        });
+
+        const differenceInSeconds = (
+          (finishedSession.finished_at - finishedSession.created_at) /
+          1000
+        ).toFixed(2);
+
+        console.log(`Time difference in seconds: ${differenceInSeconds}`);
+
         res.json({ isFound, allFound });
       } else {
         res.json({ isFound });

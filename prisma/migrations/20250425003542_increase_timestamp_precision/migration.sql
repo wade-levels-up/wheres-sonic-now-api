@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "Session" ALTER COLUMN "created_at" SET DATA TYPE TIMESTAMP(6),
+ALTER COLUMN "finished_at" SET DATA TYPE TIMESTAMP(6);
