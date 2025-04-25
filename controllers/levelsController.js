@@ -1,6 +1,5 @@
 const asyncHandler = require("express-async-handler");
 const { executeWithPrisma } = require("../utils/executeWithPrisma");
-const prisma = require("../utils/prismaClient");
 
 const setupSession = asyncHandler(async (req, res) => {
   try {
@@ -86,6 +85,14 @@ const checkItemLocation = asyncHandler(async (req, res) => {
           (finishedSession.finished_at - finishedSession.created_at) /
           1000
         ).toFixed(2);
+
+        await prisma.score.create({
+          data: {
+            time: differenceInSeconds,
+            levelId: finishedSession.level,
+            sid: finishedSession.sid,
+          },
+        });
 
         console.log(`Time difference in seconds: ${differenceInSeconds}`);
 
