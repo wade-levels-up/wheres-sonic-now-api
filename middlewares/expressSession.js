@@ -17,7 +17,7 @@ function createExpressSession({ regenerate = false } = {}) {
       tableName: "Session",
       pruneSessionInterval: 60,
     }),
-    cookie: { maxAge: 60 * 60 * 1000 }, // 1 Hour
+    cookie: { maxAge: 30 * 60 * 1000 }, // 30 minutes
   });
 
   return (req, res, next) => {

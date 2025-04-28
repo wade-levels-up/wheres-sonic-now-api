@@ -50,7 +50,7 @@ const saveUserScore = asyncHandler(async (req, res) => {
       });
     });
 
-    res.status(200).json({ message: "Save score" });
+    res.status(200).json({ message: "Saved score" });
   } catch (error) {
     throw new Error(error);
   }
