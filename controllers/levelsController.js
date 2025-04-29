@@ -37,10 +37,10 @@ const checkItemLocation = asyncHandler(async (req, res) => {
       const y = Number(req.body.y);
 
       if (
-        x > item[0].locationX - 25 &&
-        x < item[0].locationX + 25 &&
-        y > item[0].locationY - 25 &&
-        y < item[0].locationY + 25
+        x > item[0].locationX - 50 &&
+        x < item[0].locationX + 50 &&
+        y > item[0].locationY - 50 &&
+        y < item[0].locationY + 50
       ) {
         isFound = true;
       }
