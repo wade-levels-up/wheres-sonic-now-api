@@ -6,6 +6,8 @@ const seedLevelData = async () => {
 
     // Create levels in Level table
     await executeWithPrisma(async (prisma) => {
+      await prisma.level.deleteMany();
+
       await prisma.level.create({
         data: {
           id: "ice-cap-zone",
@@ -23,8 +25,33 @@ const seedLevelData = async () => {
               },
               {
                 name: "knuckles",
-                locationX: 78,
-                locationY: 558,
+                locationX: 2882,
+                locationY: 514,
+              },
+            ],
+          },
+        },
+      });
+
+      await prisma.level.create({
+        data: {
+          id: "angel-island-zone",
+          items: {
+            create: [
+              {
+                name: "sonic",
+                locationX: 188,
+                locationY: 1508,
+              },
+              {
+                name: "tails",
+                locationX: 1798,
+                locationY: 1224,
+              },
+              {
+                name: "knuckles",
+                locationX: 2478,
+                locationY: 918,
               },
             ],
           },

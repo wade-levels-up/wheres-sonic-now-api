@@ -26,7 +26,7 @@ const checkItemLocation = asyncHandler(async (req, res) => {
     await executeWithPrisma(async (prisma) => {
       const item = await prisma.item.findMany({
         where: {
-          levelId: req.body.level,
+          levelId: req.body.levelId,
           name: req.body.name,
         },
       });
