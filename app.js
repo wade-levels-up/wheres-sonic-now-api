@@ -24,4 +24,4 @@ app.use((error, req, res, next) => {
 });
 
 const PORT = process.env.PORT;
-app.listen(PORT, () => console.log(`Server live at: http://localhost:${HOST}`));
+app.listen(PORT, () => console.log(`Server live at: http://localhost:${PORT}`));
