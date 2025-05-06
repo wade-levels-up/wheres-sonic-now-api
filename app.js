@@ -7,7 +7,7 @@ const scoresRouter = require("./routes/scoresRouter");
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "http://find-sonic-fast-backend-production.up.railway.app/",
     credentials: true,
   })
 );
