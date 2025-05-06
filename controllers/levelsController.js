@@ -94,8 +94,6 @@ const checkItemLocation = asyncHandler(async (req, res) => {
           },
         });
 
-        console.log(`Time difference in seconds: ${differenceInSeconds}`);
-
         res.json({ isFound, allFound });
       } else {
         res.json({ isFound });

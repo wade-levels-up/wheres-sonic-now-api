@@ -9,7 +9,7 @@ function createExpressSession({ regenerate = false } = {}) {
   });
 
   const sessionMiddleware = session({
-    secret: "key",
+    secret: process.env.KEY,
     resave: false,
     saveUninitialized: false,
     store: new pgSession({
