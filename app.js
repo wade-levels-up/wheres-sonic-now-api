@@ -23,5 +23,5 @@ app.use((error, req, res, next) => {
   res.status(error.statusCode || 500).json({ message: error.message });
 });
 
-const HOST = process.env.HOST;
-app.listen(HOST, () => console.log(`Server live at: http://localhost:${HOST}`));
+const PORT = process.env.PORT;
+app.listen(PORT, () => console.log(`Server live at: http://localhost:${HOST}`));
