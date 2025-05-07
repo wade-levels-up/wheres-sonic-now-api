@@ -17,7 +17,11 @@ function createExpressSession({ regenerate = false } = {}) {
       tableName: "Session",
       pruneSessionInterval: 60,
     }),
-    cookie: { maxAge: 30 * 60 * 1000 }, // 30 minutes
+    cookie: {
+      maxAge: 30 * 60 * 1000, // 30 minutes
+      sameSite: "None",
+      secure: true,
+    },
   });
 
   return (req, res, next) => {
