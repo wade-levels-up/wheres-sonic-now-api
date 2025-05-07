@@ -66,7 +66,6 @@ const checkItemLocation = asyncHandler(async (req, res) => {
 
       const { sonicFound, tailsFound, knucklesFound } = gameSession;
       if (sonicFound && tailsFound && knucklesFound) {
-        console.log("All characters found!");
         const allFound = true;
 
         // Save the finished time to the session
