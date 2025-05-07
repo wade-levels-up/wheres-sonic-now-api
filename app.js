@@ -5,12 +5,22 @@ const app = express();
 const levelsRouter = require("./routes/levelsRouter");
 const scoresRouter = require("./routes/scoresRouter");
 
-app.use(
-  cors({
-    origin: "https://findsonicfast.netlify.app",
-    credentials: true,
-  })
-);
+const allowedOrigins = ["https://findsonicfast.netlify.app"];
+
+const corsOptions = {
+  origin: (origin, callback) => {
+    console.log("Incoming request origin:", origin);
+    console.log("Incoming request path:", this.req?.path);
+    if (allowedOrigins.includes(origin) || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS @API"));
+    }
+  },
+  optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
