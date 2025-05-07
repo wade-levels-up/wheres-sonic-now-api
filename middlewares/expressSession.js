@@ -17,7 +17,12 @@ function createExpressSession({ regenerate = false } = {}) {
       tableName: "Session",
       pruneSessionInterval: 60,
     }),
-    cookie: { maxAge: 30 * 60 * 1000, sameSite: "None", secure: true }, // 30 minutes
+    cookie: {
+      maxAge: 30 * 60 * 1000, // 30 Minutes
+      sameSite: "None",
+      secure: true,
+      domain: "find-sonic-fast-backend-production.up.railway.app", // Replace with your backend domain
+    },
   });
 
   return (req, res, next) => {
