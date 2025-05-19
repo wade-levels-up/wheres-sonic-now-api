@@ -21,7 +21,7 @@ function createExpressSession({ regenerate = false } = {}) {
       maxAge: 30 * 60 * 1000, // 30 Minutes
       sameSite: "None",
       secure: true,
-      domain: "find-sonic-fast-backend-production.up.railway.app", // Replace with your backend domain
+      domain: "find-sonic-fast-backend-production.up.railway.app",
     },
   });
 
