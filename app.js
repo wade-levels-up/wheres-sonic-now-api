@@ -7,7 +7,7 @@ const scoresRouter = require("./routes/scoresRouter");
 
 app.use(
   cors({
-    origin: "https://findsonicfast.netlify.app",
+    origin: "http://localhost:5173",
     credentials: true,
   })
 );
