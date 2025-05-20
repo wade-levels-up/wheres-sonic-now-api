@@ -5,7 +5,7 @@ const { body, validationResult } = require("express-validator");
 const validateUsername = [
   body("name")
     .trim()
-    .isLength({ min: 2, max: 12 })
+    .isLength({ min: 2, max: 16 })
     .withMessage("Name must be between 2 and 16 characters")
     .matches(/^\S+$/)
     .withMessage("Name cannot contain spaces"),
