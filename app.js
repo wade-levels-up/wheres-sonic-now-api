@@ -7,8 +7,7 @@ const scoresRouter = require("./routes/scoresRouter");
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
-    credentials: true,
+    origin: `${process.env.CLIENT}`,
   })
 );
 
