@@ -15,7 +15,7 @@ const setupSession = asyncHandler(async (req, res) => {
       });
     });
 
-    res.status(200).json({ status: "success" });
+    res.status(200).json({ status: "success", token: req.jwt });
   } catch (error) {
     throw new Error(error);
   }
@@ -46,7 +46,7 @@ const checkItemLocation = asyncHandler(async (req, res) => {
       }
 
       // If an item is found update the session
-      if (isFound && req.session) {
+      if (isFound) {
         await prisma.session.update({
           data: {
             [req.body.name.toLowerCase() + "Found"]: true,

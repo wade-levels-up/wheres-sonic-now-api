@@ -73,7 +73,13 @@ const saveUserScore = [
         });
       });
 
-      req.session.destroy();
+      await executeWithPrisma(async (prisma) => {
+        await prisma.session.delete({
+          where: {
+            sid: req.sessionID,
+          },
+        });
+      });
 
       res.status(200).json({ message: "Saved score" });
     } catch (error) {
